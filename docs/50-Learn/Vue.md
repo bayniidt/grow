@@ -41,21 +41,63 @@
 
 ## 组件传值
 
-1. 父传子 `props`
+1. 父传子 `v-bind:` +  `props`
 
-    ```js
-    // 父组件引用子组件，在子组件标签上使用:属性绑定
-    <son :data='data'>
+  ```js
+  // 父组件引用子组件，在子组件标签上使用:属性绑定
+  <son :data='data'>
 
-    // 子组件使用props接收父组件传递的数据，注意props与data评级，在页面中通过this.data引用，注意数据不可重复命名
-    props: ['data'],
-    // 上下两种写法都可以
-    props: {
-      type: Array,  // 指定数据类型
-      default: [],  // 默认值
-      required: true  // 是否毕传
+  // 子组件使用props接收父组件传递的数据，注意props与data评级，在页面中通过this.data引用，注意数据不可重复命名
+  props: ['data'],
+  // 上下两种写法都可以
+  props: {
+    type: Array,  // 指定数据类型
+    default: [],  // 默认值
+    required: true  // 是否毕传
+  }
+  ```
+
+2. 父传子 `$ref` + `$refs` 引用
+
+  ```js
+  // 子组件标签上添加ref属性
+  <son ref='son'>
+
+  // 父组件通过$refs获取子组件引用可以直接调用子组件数据与方法，但是官方不建议这么使用
+  this.$refs.son.$parent === this  // true
+  ```
+
+3. 父子引用 `$parent` `$children`
+    
+  ```js
+  // 父组件通过$children可以获取子组件实例
+  this.$children // 返回一个数组
+
+  // 子组件通过$parent可以获取父组件实例
+  this.$parent.data... 
+  ```
+
+4. 发布订阅通信 `$emit` + `@eventName`
+
+  ```js
+  // 子组件派发事件，父组件监听事件，当派发事件触发时传递数据并且执行父组件监听回调
+  <input @change='sonEvent'>
+
+  methods: {
+    sonEvent(data){
+      this.$emit('inputChange',data)
     }
-    ```
+  }
+
+  // 父组件监听事件并且处理事件传递的数据
+  <son @inputChange='inputChange'>
+
+  methods: {
+    inputChange(data) {
+      this.data = data
+    }
+  }
+  ```
 ## 自定义指令
 
 ## 插槽

@@ -16,5 +16,6 @@
     "vuepress-plugin-auto-sidebar": "^1.4.1",
     "vuepress-plugin-autobar": "github:boboidream/vuepress-bar",
     "vuepress-plugin-smooth-scroll": "0.0.9"
-  }
+  },
+  "dependencies": {}
 }
