@@ -9,14 +9,14 @@
 
     >由于浏览器不识别less与ES6或更高级的语法，我们需要使用工具帮我转化为浏览器可以识别的代码，这样一来每个工具都要独自维护，非常不便，所以使用一个大工具包裹所有的小工具，这样一来就只需要维护大工具（webpack）即可
 
-    <img :src="$withBase('/webpack-01.png')">
+    <img :src="$withBase('/image/webpack-01.png')">
 
 
     - 静态模块打包器（module bundler ）
 
     > 入口文件往往引入了很多文件，经过打包压缩后可以减少资源加载时间提高性能
 
-    <img :src="$withBase('/webpack-02.png')">
+    <img :src="$withBase('/image/webpack-02.png')">
 
 
 ## Day02：webpack初体验与五个核心概念
@@ -61,7 +61,7 @@
     4. `Plugins`[插件]：插件可以用于执行范围更广的任务，包括从打包优化和压缩一直到重新定义环境中的变量等等
 
     5. `Mode`[模式]：
-    <img :src="$withBase('/webpack-03.png')">
+    <img :src="$withBase('/image/webpack-03.png')">
 
 
 ## Day03：webpack.config.js的基本配置

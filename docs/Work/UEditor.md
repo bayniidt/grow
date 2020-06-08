@@ -16,11 +16,11 @@
     - JSP版本：JAVA
     ```
 
-    <img :src="$withBase('/UEditor-03.png')">
+    <img :src="$withBase('/image/UEditor-03.png')">
 
 2. 将下载好的压缩包解压，复制一份到 `public` 文件夹，注意这个文件夹与`src`平级
 
-    <img :src="$withBase('/UEditor-01.png')">
+    <img :src="$withBase('/image/UEditor-01.png')">
 
 3. 安装`vue-ueditor-wrap `
     
@@ -59,7 +59,7 @@
 
     **经过上面👆配置好之后就可以在页面上看到富文本编辑器了，接下来把秀米嵌入进去**
 
-    <img :src="$withBase('/UEditor-02.png')">
+    <img :src="$withBase('/image/UEditor-02.png')">
 
 ## 嵌入秀米
 
@@ -71,11 +71,11 @@
 
 2. 下载html与js文件下来之后，将这两个文件保存到UEditor的根目录下
 
-    <img :src="$withBase('/UEditor-04.png')">
+    <img :src="$withBase('/image/UEditor-04.png')">
 
 3. 修改 `ueditor.config.js` 文件中的`section:['class', 'style']`,
 
-    <img :src="$withBase('/UEditor-05.png')">
+    <img :src="$withBase('/image/UEditor-05.png')">
 
     > 按照步骤修改之后在UEditor编辑器上还看不到秀米的按钮，接下来是很重要一步
 
@@ -111,7 +111,7 @@
 
 > 做到这一步的时候还无法将图片上传到服务器，如果需要这个功能的话【找后端配合写服务器的请求接口】，当在秀米中处理好图片，点勾子按钮时会自动将图片发送到指定的服务器保存
 
-<img :src="$withBase('/UEditor-06.png')">
+<img :src="$withBase('/image/UEditor-06.png')">
 
 ### 开始配置UEditor
 
