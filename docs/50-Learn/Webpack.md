@@ -183,3 +183,102 @@ module.exports = {
 
 ```
 
+
+
+
+
+## Day05：devServer[热更新] 
+
+
+> 每次更新代码之后都需要重新运行打包命令，这样就非常麻烦，所以webpack提供了热更新的配置 
+
+下载loader `npx i webpack-dev-server -D`
+启动热更新指令 `npx webpack-dev-server`
+
+    ```js
+        module.exports = {
+            entry: './src/index.js',
+            output: './build/index.js',
+            module: {
+                rules: [  ]
+            },
+            plugins: [],
+            mode: 'development',
+
+            // 开发服务器： devServer 自动化编译/打开浏览器/刷新浏览器
+            // 启动指令为： webpack-dev-server
+            devServer : {
+                contentBase : resolve(__dirname,'build'),
+                // 启动gzip压缩
+                conperss: true,
+                // 端口号
+                port : 3000,
+                // 自动打开浏览器
+                open : true
+            }
+        }
+    ```
+
+## Day06：开发环境的基本配置
+
+```js
+const { resolve } = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+module.exports = {
+    entry: './src/index.js',
+    output: {
+        filename: 'build.js',
+        path: resolve(__dirname,'build')
+    },
+    module: {
+        rules: [
+            {
+                test: /\.less$/,
+                use: ['style-loader','css-loader','less-loader']
+            },
+            {
+                test: /\.css$/,
+                use: ['style-loader','css-loader']
+            },
+            {
+                test: /\.(jpg|png|gif)$/,
+                loader: 'url-loader',
+                options: {
+                    limit : 8 * 1024,
+                    name : '[hash:10].[ext]',
+                    // 关闭ES6 module
+                    esModule: false
+                }
+            },
+            {
+                test: /\.html/,
+                loader: 'html-loader'
+            },
+            {   
+                // 处理其他资源，这里是排除掉括号里的文件，其他资源都用file-loader来处理
+                exclude: /\.(html|js|css|less|jpg|png|gif)/,
+                loader: 'file-loader',
+                name: '[hash:10].[ext]'
+            }
+        ],
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: './src/index.html'
+        })
+    ],
+    // 热更新配置
+    devServer: {
+        contentBase: resolve(__dirname,'build'),
+        compress: true,
+        port: 3000,
+        open: true
+    },
+    modu: 'development'
+}
+
+
+
+
+```
