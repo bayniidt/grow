@@ -116,8 +116,6 @@
     output: {
         path: resolve(__dirname,'打包输出保存的文件夹名')
     }
-
-
     ```
 
 ## Day04：webpack打包html&图片资源与使用插件
@@ -178,9 +176,7 @@ module.exports = {
         })
     ],
     mode: 'development'
-
 }
-
 ```
 
 
@@ -195,29 +191,29 @@ module.exports = {
 下载loader `npx i webpack-dev-server -D`
 启动热更新指令 `npx webpack-dev-server`
 
-    ```js
-        module.exports = {
-            entry: './src/index.js',
-            output: './build/index.js',
-            module: {
-                rules: [  ]
-            },
-            plugins: [],
-            mode: 'development',
+```js
+module.exports = {
+    entry: './src/index.js',
+    output: './build/index.js',
+    module: {
+        rules: [  ]
+    },
+    plugins: [],
+    mode: 'development',
 
-            // 开发服务器： devServer 自动化编译/打开浏览器/刷新浏览器
-            // 启动指令为： webpack-dev-server
-            devServer : {
-                contentBase : resolve(__dirname,'build'),
-                // 启动gzip压缩
-                conperss: true,
-                // 端口号
-                port : 3000,
-                // 自动打开浏览器
-                open : true
-            }
-        }
-    ```
+    // 开发服务器： devServer 自动化编译/打开浏览器/刷新浏览器
+    // 启动指令为： webpack-dev-server
+    devServer : {
+        contentBase : resolve(__dirname,'build'),
+        // 启动gzip压缩
+        conperss: true,
+        // 端口号
+        port : 3000,
+        // 自动打开浏览器
+        open : true
+    }
+}
+```
 
 ## Day06：开发环境的基本配置
 
@@ -277,8 +273,4 @@ module.exports = {
     },
     modu: 'development'
 }
-
-
-
-
 ```
