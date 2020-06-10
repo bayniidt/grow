@@ -1,6 +1,6 @@
 # 面试记录
 
-## 202-06-10 
+## 2020-06-10 
 
 ### `Vue`怎么优化长列表
 
@@ -80,4 +80,89 @@ export default {
 <keep-alive :include="whiteList" :exclude="blackList" :max="amount">
     <router-view></router-view>
 </keep-alive>
+```
+
+### CSS实现垂直居中
+```css
+/* 知道居中元素宽高 */
+.father{
+    width: 300px;
+    height: 300px;
+    border:1px solid red;
+    position: relative;  // 父盒子设置相对定位
+}
+.son{
+    width: 100px;
+    height: 50px;
+    position: absolute;  // 居中盒子设置绝对定位
+    background: yellow;
+    top: 50%;   // 距离上50%
+    left: 50%;   // 距离左50%
+    margin-top: -25px;  // 上外边距 减去自身高度50%
+    margin-left: -50px;  // 左外边距 减去自身高度50%
+}
+/* or */
+.son{
+    width: 100px;
+    height: 50px;
+    position: absolute;  // 居中盒子设置绝对定位
+    background: yellow;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin: auto; // 上右下左全部设置为0 外边距为auto
+}
+
+/* 居中元素的宽高未知 */
+.father{
+    width: 300px;
+    height: 300px;
+    background: #ddd;
+    position: relative;  // 父盒子相对定位
+}
+.son{
+    width: 100px;
+    height: 50px;
+    background: green;
+    position: absolute; // 居中元素绝对定位
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50% , -50%); // 平移自身的宽高50%
+}
+
+/* flex布局 */
+.father{
+    width: 300px;
+    height: 300px;
+    background: blue;
+    display: flex; // 设置父盒子为弹性盒子
+    justify-content: center; // 主轴居中
+    align-items: center; // 交叉轴居中
+}
+/*注意：即使不设置子元素为行块元素也不会独占一层*/
+.son{
+    width: 100px;
+    height: 50px;
+    background:green;
+}
+
+```
+
+### new一个对象时，new做了哪些事？
+
+```
+1. 创建一个空对象
+
+2. 将this指向这个空对象
+
+3. 执行构造函数中的代码，为对象添加成员
+
+4. 返回这个对象 
+```
+
+### 实现一个简单的发布订阅类
+
+```js
+ing...
 ```
