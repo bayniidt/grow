@@ -2,7 +2,7 @@
 
 ## 2020-06-10 
 
-### `Vue`怎么优化长列表
+### 1. `Vue`怎么优化长列表
 
 `vue`中的每个数据，都会自动使用`object.definProperty`做数据劫持来实现视图响应数据，当某些数据只需要展示不会有任何改变的时候，就不需要被劫持，可以使用`object.freeze`来冻结该数据，在长列表数据下执行，可以减少组件的初始化时间。
 
@@ -23,7 +23,7 @@ export default {
 }
 ```
 
-### `v-if`与`v-for`的优先级与如何处理在`v-for`中使用`v-if`
+### 2. `v-if`与`v-for`的优先级与如何处理在`v-for`中使用`v-if`
 
 在`vue`的`compile`指令解析时，`v-for`的优先级是高于`v-if`的
 
@@ -52,7 +52,7 @@ export default {
 </template>
 ```
 
-### 浏览器从输入URL到页面渲染完成的过程中都发生了写什么？
+### 3. 浏览器从输入URL到页面渲染完成的过程中都发生了写什么？
 
 1. 浏览器会在缓存中寻找是否有该url的ip缓存，没有则会向服务端发送DNS请求查询IP地址
 
@@ -66,7 +66,7 @@ export default {
 
 6. 关闭链接
 
-### 如何实现用户在点击跳转文章后，返回时希望还在原来跳转前的位置
+### 4. 如何实现用户在点击跳转文章后，返回时希望还在原来跳转前的位置
 
 > 使用`keep-alive`缓存组件
 
@@ -82,7 +82,7 @@ export default {
 </keep-alive>
 ```
 
-### CSS实现垂直居中
+### 5. CSS实现垂直居中
 ```css
 /* 知道居中元素宽高 */
 .father{
@@ -149,7 +149,7 @@ export default {
 
 ```
 
-### new一个对象时，new做了哪些事？
+### 6. new一个对象时，new做了哪些事？
 
 ```
 1. 创建一个空对象
@@ -161,7 +161,7 @@ export default {
 4. 返回这个对象 
 ```
 
-### 实现一个简单的发布订阅类
+### 7. 实现一个简单的发布订阅类
 
 ```js
 ing...
@@ -169,7 +169,7 @@ ing...
 
 ## 2020-06-15
 
-### 什么是`HTTP`**简单请求**&**非简单请求**？
+### 1. 什么是`HTTP`**简单请求**&**非简单请求**？
 
 - 简单请求：浏览器直接发出`CORS`请求。具体来说，就是在请求头中，增加一个`Origin`字段。 `Origin`字段用来说明本次请求是来自哪个源
 
@@ -217,3 +217,105 @@ xhr.send();
 
     - `JSONP`只支持`GET`请求，`CORS`支持所有类型的`HTTP`请求。`JSONP`的优势在于支持老式浏览器，以及可以向不支持`CORS`的网站请求数据。
 
+
+### 2. `webpack`多入口文件页面打包
+
+单页面应用程序入口配置一般如下
+
+```js
+entry: resolve(__dirname,'src/home/index.js')
+```
+
+多页面应用，需要配置多个入口文件，如下
+
+```js
+entry: {
+    home: resolve(__dirname,'src/home/index.js'),
+    about: resolve(__dirname,'src/about/index.js')
+}
+```
+
+### 3. `proxy`与`defineproperty`的区别是什么
+
+> vue2.x的双向绑定使用了`Object.defineproperty`进行数据劫持，vue3.0使用`proxy`代理
+
+- defineproperty: 需要递归，不能劫持数组，配合发布订阅模式
+```js{6,9}
+//vue2.x
+Object.key(data).forEach(function(key){
+    Object.defineproperty(data,key,{
+        enumerable: true,
+        configurable: true,
+        get: function() {
+            console.log('get')
+        },
+        set: function(newVal) {
+            console.log(newVal)
+        }
+    })
+})
+```
+
+- Proxy: 可以直接监听整个对象，不需要递归，可以监视数组，有13种拦截方法，**Proxy返回的是一个新对象，只可以操作新的对象达到目的**，**而Object.defineproperty只能遍历对象属性直接修改**，**Proxy兼容性差**
+```js{9,13}
+const input = document.getElementById('input')
+const p = document.getElementById('p')
+const obj = {}
+
+// Reflect为 Object.defineproperty.get/set 的包装对象 ，可以将操作转发给原始对象
+const newObj = new Proxy(obj, {
+    get: function(target, key, receivere) {
+        console.log(key)
+        return Reflect.get(target, key, receiver)
+    },
+    set: function(target, key, value, receiver) {
+        console.log(target, key, value, receiver)
+        return Reflect.set(target, key, value, receiver)
+    }
+})
+```
+
+### 3. async await 
+
+- `async` 函数是什么
+
+> `async`函数与`Generator`函数一样，返回一个`Promise`对象，可以使用`then`方法添加回调函数。**当函数执行的时候，一旦遇到`await`就会先返回，等到触发的异步操作完成，再接着执行函数题内后面的语句**
+
+- `async`函数是`Generator`函数的语法糖 ， 并且`async`函数自带执行器，不需要再手动调用`next()`
+
+- `async`函数的实现就是将`Generator`函数和自动执行器包装在一个函数中
+
+    ```js
+    async function fn(args){
+    // ...
+    }
+
+    // 等同于
+
+    function fn(args){ 
+    return spawn(function*() {
+        // ...
+    }); 
+    }
+    ```
+
+### 4. `React`与`Vue`的异同
+
+- 相同点：
+
+    1. `React`与`Vue`都使用了`VDOM 虚拟DOM`
+    虚拟DOM是一个映射真实DOM的JS对象，如果需要改变任何元素的状态，那么现在虚拟DOM上进行改变，而不是直接操作真实的DOM。当有变化时会进行新旧虚拟DOM的比对，把变化应用在真实DOM上
+
+    2. 组件
+    `React`与`Vue`都鼓励组件化应用。建议开发人员将应用拆分为一个个功能明确的模块，每个模块之间通过合适的方式互相联系
+
+    3. `Props`
+    两者都可以通过`Props`进行值传递
+
+- 异同点：
+
+    1. `React`使用`JSX` ，`Vue`使用模版
+    `React`使用`JSX`，就是原生的`JavaScript`，赋予了开发者许多编程能力，但是`vue`中的`render`函数也可以使用`JSX`语法
+
+    2. `React`的状态管理，`Vue`的对象属性
+    在`React`中必须通过`setState()`方法更新状态，而在Vue中直接由`data`进行管理，在开发大型应用中，使用`Redux`或`Vuex`是必须的
