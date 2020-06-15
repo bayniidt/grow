@@ -23,7 +23,7 @@ git commit -m 'deploy'
 
 
 # 解决dist文件夹打包后git失缺重新push报错
-git pull origin master --allow-unrelated-histories
+# git pull origin master --allow-unrelated-histories
 
 
 

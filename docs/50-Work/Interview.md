@@ -166,3 +166,54 @@ export default {
 ```js
 ing...
 ```
+
+## 2020-06-15
+
+### 什么是`HTTP`**简单请求**&**非简单请求**？
+
+- 简单请求：浏览器直接发出`CORS`请求。具体来说，就是在请求头中，增加一个`Origin`字段。 `Origin`字段用来说明本次请求是来自哪个源
+
+```js{2}
+GET /cors HTTP/1.1
+Origin: http://api.bob.com
+Host: api.alice.com
+Accept-Language: en-US
+Connection: keep-alive
+User-Agent: Mozilla/5.0...
+
+// 符合下列两种条件的就属于简单请求
+
+// 请求方法是以下三种方法
+HEAD
+GET
+POST
+
+// 请求头信息不超出以下几种字段
+Accept
+Accept-Language
+Content-Language
+Last-Event-ID
+Content-Type：只限于三个值application/x-www-form-urlencoded、multipart/form-data、text/plain
+```
+
+- 非简单请求：非简单请求是那种对服务器有特殊要求的请求，比如请求方式为`PUT`或`DELETE`，或`Content-Type`字段的类型是`application/json`。
+
+> 非简单请求的`CORS`请求，会在正式通信之前，增加一次`HTTP`查询请求，称之为`“预检”`请求。浏览器会先咨询服务器，当前网页所在的域名是否在服务器的许可名单之中
+
+
+```JS{3,4}
+var url = 'http://api.alice.com/cors';
+var xhr = new XMLHttpRequest();
+xhr.open('PUT', url, true);
+xhr.setRequestHeader('X-Custom-Header', 'value');
+xhr.send();
+```
+上面代码中，`HTTP`请求的方法是`PUT`，并且发送一个自定义头信息`X-Custom-Header`。
+
+
+- `CORS`与`JSONP`的比较
+
+    - `CORS`与`JSONP`的使用目的相同，但是比`JSONP`更强大。
+
+    - `JSONP`只支持`GET`请求，`CORS`支持所有类型的`HTTP`请求。`JSONP`的优势在于支持老式浏览器，以及可以向不支持`CORS`的网站请求数据。
+
