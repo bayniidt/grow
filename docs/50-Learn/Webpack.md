@@ -217,6 +217,8 @@ module.exports = {
 
 ## Day06：开发环境的基本配置
 
+> 注意：插件是先引入后使用，使用`new`的方式创建插件对象，并且传入配置。使用`outputPath`可以定义打包后文件的保存文件夹
+
 ```js
 const { resolve } = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -255,7 +257,9 @@ module.exports = {
                 // 处理其他资源，这里是排除掉括号里的文件，其他资源都用file-loader来处理
                 exclude: /\.(html|js|css|less|jpg|png|gif)/,
                 loader: 'file-loader',
-                name: '[hash:10].[ext]'
+                name: '[hash:10].[ext]',
+                // outputPath : 打包后生成的文件夹，每个不同的资源都可以单独保存
+                outputPath: 'media'
             }
         ],
     },
@@ -272,5 +276,49 @@ module.exports = {
         open: true
     },
     modu: 'development'
+}
+```
+
+
+## Day07：生产环境的搭建
+
+- 1. 将css样式文件抽离成单独文件
+
+> 在开发环境中css样式文件打包后是集成在js文件中，所以会先加载js然后在通过创建`style`标签的方式添加样式，会出现闪屏现象，并且提高了js文件的体积，这样做的目的是提高了开发环境的构建速度
+
+`npm i mini-css-extract-plugin` 下载插件
+
+```js
+// 使用插件 mini-css-extract-plugin 分离css
+
+const { resolve } = require('path') // 引入resolve方法
+const HtmlWebpackPlugin = require('html-webpack-plugin') // 引入html插件
+const MiniCssExtractPlugin = require('mini-css-extract-plugin') // 引入分离css插件
+
+module.exports = {
+    entry: './src/js/index.js', // 入口
+    output: { // 出口
+        filename: 'js/built.js', // 打包输出文件名
+        path: resolve(__dirname, 'build') // 打包输出文件保存路径
+    },
+    module: { // 模块
+        rules: [ // 规则
+            {
+                test: /\.css$/, // 匹配
+                user: [ // 使用的loader
+                    // 'style-loader',  // 创建style标签，将样式写入，抽离css不需要style-loader
+                    MiniCssExtractPlugin.loader, // 分离css插件上的loader取代style-loader，提取css成单独文件
+                    'css-loader' // 将css文件集成到js文件
+                ]
+            }
+        ]
+    },
+    plugins: [ // 插件
+        new HtmlWebpackPlugin({ // 创建html插件对象
+            template: './src/index.html'  // 传入模版
+        }),
+        new MiniCssExtractPlugin() // 创建分离css插件对象
+    ],
+    mode: 'development'  // 模式
 }
 ```
