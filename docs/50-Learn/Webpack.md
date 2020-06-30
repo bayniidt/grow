@@ -282,7 +282,7 @@ module.exports = {
 
 ## Day07：生产环境的搭建
 
-- 1. 将css样式文件抽离成单独文件
+- 1. 将css样式文件抽离成单独文件与兼容css
 
 > 在开发环境中css样式文件打包后是集成在js文件中，所以会先加载js然后在通过创建`style`标签的方式添加样式，会出现闪屏现象，并且提高了js文件的体积，这样做的目的是提高了开发环境的构建速度
 
@@ -294,6 +294,9 @@ module.exports = {
 const { resolve } = require('path') // 引入resolve方法
 const HtmlWebpackPlugin = require('html-webpack-plugin') // 引入html插件
 const MiniCssExtractPlugin = require('mini-css-extract-plugin') // 引入分离css插件
+
+// 设置nodejs环境变量
+process.env.NODE_ENV = 'development'
 
 module.exports = {
     entry: './src/js/index.js', // 入口
@@ -307,8 +310,37 @@ module.exports = {
                 test: /\.css$/, // 匹配
                 user: [ // 使用的loader
                     // 'style-loader',  // 创建style标签，将样式写入，抽离css不需要style-loader
-                    MiniCssExtractPlugin.loader, // 分离css插件上的loader取代style-loader，提取css成单独文件
-                    'css-loader' // 将css文件集成到js文件
+                    // 分离css插件上的loader取代style-loader，提取css成单独文件
+                    MiniCssExtractPlugin.loader, 
+                    'css-loader', // 将css文件集成到js文件
+                    /*
+                        css兼容性处理：postcss --> postcss-loader --> postcss-preset-env
+
+                        帮postcss找到package.json文件中的browserslist里面的配置，通过配置加载指定的css兼容样式
+
+                        "browserslist": {
+                            "development": [
+                                "last 1 chrome version",
+                                "last 1 firefox version",
+                                "last 1 safari version"
+                            ],
+                            // 默认是生产环境配置，如果想激活开发环境配置，必须设置process.env.NODE_ENV环境变量
+                            "production": [
+                                ">0.2%",
+                                "not dead",
+                                "not op_mini all"
+                            ]
+                        }
+                    */
+                   {
+                       loader: 'postcss-loader',
+                       options: {
+                           ident: 'postcss',
+                           plugins: ()=> [
+                               require('postcss-preset-env')
+                           ]
+                       }
+                   }
                 ]
             }
         ]
