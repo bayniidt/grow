@@ -286,7 +286,7 @@ module.exports = {
 
 > 在开发环境中css样式文件打包后是集成在js文件中，所以会先加载js然后在通过创建`style`标签的方式添加样式，会出现闪屏现象，并且提高了js文件的体积，这样做的目的是提高了开发环境的构建速度
 
-`npm i mini-css-extract-plugin` 下载插件
+`npm i mini-css-extract-plugin` 
 
 ```js
 // 使用插件 mini-css-extract-plugin 分离css
@@ -352,5 +352,148 @@ module.exports = {
         new MiniCssExtractPlugin() // 创建分离css插件对象
     ],
     mode: 'development'  // 模式
+}
+```
+
+
+- 2. 压缩css
+
+`npm i optimize-css-assets-webpack-plugin` 
+
+```js
+const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
+
+plugins: [
+    new OptimizeCssAssetsWebpackPlugin()
+]
+```
+
+> 生产环境基本配置，Loader复用与同时使用2个Loader处理的文件执行顺序 *use数组的执行顺序是从下往上的*
+
+```js
+
+const { resolve } = require('path')
+// MiniCssExtractPlugin 兼容css 提取css成单独文件不集成在js中
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+// OptimizeCssAssetsWebpackPlugin 压缩css
+const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
+// HtmlWebpackPlugin 处理html
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+// 这里配置的是 postcss-loader 的 browserslist 执行环境 默认prodoction 开发环境配置为development
+process.env.NODE_ENV = 'prodoction'
+
+// 复用css与less通用的loader配置
+const commonCssLoader = [
+    MiniCssExtractPlugin.loader,
+    'css-loader',
+    {
+        // 还需要在package.json中配置browserslist兼容的浏览器版本
+        loader: 'postcss-loader',
+        options: {
+            ident: 'postcss',
+            plugins: () => [
+                require('postcss-preset-env')()  // 注意这里的重复调用
+            ]
+        }
+    }
+]
+
+module.exports = {
+    entry: './src/js/index.js',
+    output: {
+        filename: 'js/build.js',
+        path: resolve(__dirname,'build')
+    },
+    module: {
+        rules: [
+            // 处理css与压缩
+            {
+                test: /\.css$/,
+                use: [ ...commonCssLoader ]
+            },
+            // 处理less与压缩
+            {
+                test: /\.less$/,
+                use: [
+                    ...commonCssLoader,
+                    'less-loader'  // less-loader需要放在css-loader下面 否则解析会报错
+                ]
+            },
+            // 处理js语法规范
+            {
+                // 需要在package.json中配置eslintConfig --> airbnb
+                test: /\.js$/,
+                exclude: /node_modules/, // 排除node_modules
+                enforce: 'pre', // 优先执行此loader
+                loader: 'eslint-loader',
+                options: {
+                    fix: true  // 自动修复语法错误
+                }
+            },
+            // 兼容js
+            // 这里js会被两个loader处理，注意eslint-loader与babel-loader的执行顺序
+            // 优先执行eslint-loader
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: 'babel-loader',
+                options: {
+                    presets: [
+                        [
+                            '@babel/preset-env',
+                            {
+                                // 设置babel/preset-env的按需加载
+                                useBuiliIns: 'usage',
+                                corejs: { version: 3 },
+                                targets: {
+                                    chrome: '60',
+                                    firefix: '50'
+                                }
+                            }
+                        ]                        
+                    ]
+                }
+            },
+            // 处理图片
+            {
+                test: /\.(jpg|png|gif)/,
+                loader: 'url-loader',
+                options: {
+                    limit: 8 * 1024,
+                    name: '[hash:10].[ext]',
+                    outputPath: 'image',
+                    esModule: false // 关闭es模块化
+                }
+            },
+            // 处理html
+            {
+                test: /\.html$/,
+                loader: 'html-loader'
+            },
+            // 处理其他文件
+            {
+                exclude: /\.(js|css|less|html|jpg|png|gif)/,
+                loader: 'file-loader',
+                options: {
+                    outputPath: 'media'
+                }
+            }
+        ]
+    },
+    plugins: [
+        new MiniCssExtractPlugin({
+            filename: 'css/build.css'
+        }),
+        new OptimizeCssAssetsWebpackPlugin(),
+        new HtmlWebpackPlugin({
+            template: './src/index.html',  // 指定HTML模版
+            minify: {
+                collapseWhitespace: true, // 去除空格
+                removeComments: true // 去除注释
+            }
+        })
+    ],
+    mode: 'production' // 生产环境会自动压缩js
 }
 ```
