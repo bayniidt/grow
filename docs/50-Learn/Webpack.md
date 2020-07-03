@@ -497,3 +497,36 @@ module.exports = {
     mode: 'production' // 生产环境会自动压缩js
 }
 ```
+
+## Day08：优化配置
+
+### 开发环境性能优化
+
+* 优化打包构建速度 
+* 优化代码调试
+
+> 修改项目中任何一个模块，都会导致其他模块重新打包编译，如果模块过多，会占用过多的打包编译时间。
+
+`HMR：hot module replacement   热模块替换 / 模块热替换`
+
+**实现功能：有变化的地方才重新编译，提升构建速度**
+
+```js{8,11}
+/*
+    CSS文件：可以使用HMR功能，因为style-loader内部实现了
+    JS文件：默认不能使用HMR功能
+    HTML文件：默认不能使用HMR功能（单页面文件不需要HMR），同时会导致HTML文件不会热更新
+        解决：修改entry入口为数组，添加index.html
+*/
+module.exports = {
+    entry: ['./src/js/index.js','./src/index.html']
+    deveServer: {
+        // 开启HMR功能
+        hot: true
+    }
+}
+```
+### 生产环境性能优化
+
+* 优化打包构建速度
+* 优化代码运行性能
