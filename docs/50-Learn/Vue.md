@@ -10,6 +10,20 @@
 
 > 熟记 `生命周期`，`watch`，`computed`，`filter`，`v-xxx指令`，`事件修饰符` 等等  
 
+- 使用技巧：
+
+  - 快速还原data属性(例如：重置表单内容)
+
+  ```js
+  // 访问未被修改的formData
+  this.$options.data().formData 
+
+  // 访问现在的formData
+  this.$data.formData
+
+  // 还原formData
+  this.$data.formData = this.$options.data().formData
+  ```
 
 
 ## watch
@@ -237,8 +251,14 @@ export default {
 // 导入
 import pageMixins from './page.js'
 
-// 混入，注意mixins与data平级
+// 混入，注意mixins与data平级 ，
 mixins: [pageMixins]
+
+// data中没有定义page与total属性，经过mixins混入后已经用友了page与total属性并且可以正常赋值使用
+// 并且不会影响其他同样使用page.js混入的page与total属性
+data : {
+  ...
+}
 
 ```
 
