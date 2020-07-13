@@ -511,7 +511,7 @@ module.exports = {
 
 **实现功能：有变化的地方才重新编译，提升构建速度**
 
-```js{8,11}
+```js{8,11,14}
 /*
     CSS文件：可以使用HMR功能，因为style-loader内部实现了
     JS文件：默认不能使用HMR功能
@@ -523,10 +523,175 @@ module.exports = {
     deveServer: {
         // 开启HMR功能
         hot: true
-    }
+    },
+    // 使用source-map 映射构建后代码
+    devtool: 'source-map'
 }
 ```
 ### 生产环境性能优化
 
 * 优化打包构建速度
 * 优化代码运行性能
+
+- `oneOf` 
+    
+在wepack的loader规则中，有很多不同的loader，这样每个文件都会被rules中所有的loader扫描一遍，浪费性能，所以使用 `oneOf` 设置每个文件只匹配一个loader，提升构建速度
+
+> 注意：不能有两个loader配置处理同一种文件，例如eslint-loader与bable-loader
+
+```js{15}
+module.exports = {
+    module: {
+        rules: [
+            // 将eslint-loader从oneOf数组中抽离，将babel-loader放在oneOf数组中
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                exforce: 'pre',
+                loader: 'eslint-loader',
+                options: {
+                    fix: true
+                }
+            },
+            {
+                oneOf: [
+                    {
+                        test: /\.css$/,
+                        use: [...commonCssLoader]
+                    },
+                    {
+                        test: /\.less$/,
+                        use: [...commonCssLoader]
+                    },
+                    {
+                        test: /\.js$/,
+                        exclude: /node_modules/,
+                        loader: 'babel-loader',
+                    }
+
+                ]
+            }
+        ]
+    }
+}
+```
+
+
+- `babel缓存`
+
+类似HMR功能，在babel编译js文件时，只编译改动的模块，不编译没有变化的模块，生产环境不能使用HMR功能
+
+```js{11,12}
+// 开启babel缓存
+module.exports = {
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: 'babel-loader',
+                options: {
+                    presets: [...],
+                    // 开启babel缓存，第二次构建
+                    cacheDirectory: true
+                }
+            }
+        ]
+    }
+}
+```
+- 静态资源缓存`contenthash`
+
+> 在代码放到服务器上之后，静态资源(CSS，HTML，JS，图片等)可能会被设置为`强缓存`，在修改代码之后被缓存的资源并不会重新访问服务器，而是直接读取缓存。此时可以在构建的文件名后添加HASH值，每次构建修改后的文件都会有不同的HASH值，这样文件名不同就会重新访问服务器
+
+
+
+```js{14,15}
+module.exports = {
+    output: {
+        // 这里的index.js 就是一个chunk[代码块]，所有的资源都从这里引入打包
+        entry: './src/js/index.js',  
+
+        // 在输出文件名中添加hash值
+        // 问题：资源使用的是同一个hash值，如果重新打包构建所有的缓存文件都会失效
+        // filename: 'js/built.[hash:10].js'
+
+        // 使用chunkhash值：打包时来源于同一个chunk，hash值就一样
+        // 问题： js于css的hash还是一样，因为css是在js中引入，属于同一个chunk
+        // filename: 'js/built.[chunkhash:10].js'
+
+        // 使用contenthash：根据文件的内容来生成hash，并且是单独管理的
+        filename: 'js/built.[contenthash:10].js'
+    }
+}
+```
+
+
+
+## Day09：生产环境的优化
+
+- `tree shaking` 摇树
+
+> 当webpack从入口文件开始出发扫描所有引入的模块依赖(子依赖)，然后将它们链接起来形成一颗`抽象语法树(AST)`。在运行代码时检查使用过的依赖，打上标记，最后将`抽象语法树(AST)`中没有用到的代码`摇落(优化)`。目的：优化没用的代码
+
+```js
+/*
+    tree shaking : 去除无用代码
+    前提：1· 必须使用ES6模块化 2· 开启production生产环境
+    作用：减少打包提及，提升加载速度
+
+    在package.json中配置 
+        "sideEffects": false  所有代码都没有副作用（可以进行tree shaking）
+        问题：会把直接引入的css或其他资源直接消除，打包后就没有了
+        "sideEffects": ["*.css","*.less"] 标记.css文件 不作用 tree shaking
+*/
+module.exports = {
+
+}
+```
+#### 多入口打包
+
+- `code split` 代码分割(并行加载，按需加载) 
+
+```js{7}
+const { resolve } = require('path')
+
+module.exports = {
+    //单入口 ： 单页面程序应用 
+    // entry: './src/js/index.js',
+    //多入口 ：多页面程序应用
+    entry: {
+        // 多入口打包 多个入口，输出有多个bundle
+        main: './src/js/index.js',
+        test: './src/js/test.js'
+    },
+    output: {
+        // filename: 'js/built.[contenthash:10].js',
+        // [name] 取入口的文件名
+        filename: 'js/[name].[contenthash:10].js',
+        path: resolve(__dirname, 'build')
+    }
+}
+```
+
+```js{14}
+const { resolve } = require('path')
+
+module.exports = {
+    entry: './src/js/index.js',
+    output: {
+        filename: 'js/[name].[contenthash:10].js',
+        path: resolve(__dirname, 'build')
+    },
+    /*
+        optimization: 
+            将node_modules中代码单独打包成一个chunk
+            在多入口打包模式下，将公共模块(多次引用的jQuery)打包成一个chunk
+    */
+    optimization: {
+        splitChunks: {
+            chunks: 'all'
+        }
+    }
+}
+```
