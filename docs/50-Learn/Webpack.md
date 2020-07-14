@@ -714,7 +714,7 @@ document.getElementById('btn').onclick = function () {
 
 ## Day10：PWA（渐进式网络开发应用程序）
 
-> 离线可访问页面 `workbox` `workbox-webpack-plugin`
+> 离线可访问页面 `workbox` `workbox-webpack-plugin` ，serviceWorker代码必须运行在服务器上
 
 `npm i workbox-webpack-plugin`
 ```js
@@ -740,5 +740,38 @@ if('serviceWorker' in navigator) {
         .then(()=>{ console.log('注册成功')})
         .catch(()=>{ console.log('注册失败')})
     })
+}
+
+/*
+    eslint不识别浏览器全局变量
+    解决: 配置package.json
+    "eslintConfig": {
+        "evn": {
+            "browser": true
+        }
+    }
+*/
+```
+
+- 多进程打包 `thread-loader`
+
+> `npm i thread-loader -D`进程启动也需要时间，只用工作消耗时间较长才需要多进程打包
+
+```js
+module.exports = {
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                // loader: 'babel-loader',
+                // 使用多个louader ，则使用use字段传递一个数组
+                use: [
+                    // 开启多进程打包
+                    'thread-loader',
+                ]
+            }
+        ]
+    }
 }
 ```
