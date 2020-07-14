@@ -695,3 +695,50 @@ module.exports = {
     }
 }
 ```
+
+- `lazy loading` 懒加载
+
+> 懒加载的前提条件： 代码分割
+
+```js
+// 场景一
+// 使用import语法将方法变为异步方法，当按钮点击时才执行
+document.getElementById('btn').onclick = function () {
+    // /* webpackChunakName: 'test'*/  修改打包后的chunak名称， 当JS文件需要使用时才会加载
+    // webpackPrefetch: true 预加载 ，将JS文件提前加载，使用时读取缓存
+    import(/* webpackChunakName: 'test', webpackPrefetch: true */ './test').then(({ mul })=>{
+        console.log(4, 5)
+    })
+}
+```
+
+## Day10：PWA（渐进式网络开发应用程序）
+
+> 离线可访问页面 `workbox` `workbox-webpack-plugin`
+
+`npm i workbox-webpack-plugin`
+```js
+// webpack.config.js
+const WorkboxWebpackPlugin = require('workbox-webpack-plugin')
+
+module.exports = {
+    plugins: [
+        new WorkboxWebpackPlugin.GenerateSW({
+            // 1.快速启动serviceworker 2.删除久的serviceworker
+            // 3.生成serviceworker配置文件
+            clientsClaim: true,
+            skipWaiting: true
+        })
+    ]
+}
+
+// 入口文件 index.js
+// 注册serviceworker 处理兼容性问题
+if('serviceWorker' in navigator) {
+    window.addEventListener('load', ()=> {
+        navigator.serviceworker.register('/service-worker.js')
+        .then(()=>{ console.log('注册成功')})
+        .catch(()=>{ console.log('注册失败')})
+    })
+}
+```
