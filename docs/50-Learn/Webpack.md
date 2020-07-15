@@ -775,3 +775,20 @@ module.exports = {
     }
 }
 ```
+
+- `externals` 构建打包时忽略指定依赖包
+
+> 忽略某个包后注意手动引入对应的CDN库链接
+
+```js
+module.exports = {
+    entry: '',
+    output: {},
+    plugins: [],
+    mode: '',
+    externals: {
+        // 忽略jQuery打包
+        jquery: 'jQuery'
+    }
+}
+```
