@@ -124,9 +124,6 @@ class Logger {
 
 > 类相当于实例的原型，所有在类中定义的方法，都会被实例继承。如果在一个方法前加上`static`关键字，就表示该方法不会被实例继承，而是通过类直接调用，这就称之为 “静态方法”。
 
-如果静态方法中包含`this`，那么`this`指向的是这个类而不是实例
-父类的静态方法可以被子类继承
-
 ```js
 class Foo {
     static classMethod() {
@@ -138,4 +135,79 @@ Foo.classMethod() // 'Hello'
 
 let foo = new Foo()
 foo.classMethod() // TypeError: foo.classMethod is not a function
+```
+
+> 如果静态方法中包含`this`，那么`this`指向的是这个类而不是实例
+
+```js
+class Foo {
+    static bar() {
+        this.baz()
+    }
+    // 类中的静态方法baz
+    static baz() {
+        console.log('Hello')
+    }
+    // 实例中的方法baz
+    baz() {
+        console.log('world')
+    }
+}
+
+Foo.bar() // 'Hello'
+```
+
+> 父类的静态方法可以被子类继承
+
+```js
+class Foo {
+    static calssMethod() {
+        return 'Hello'
+    }
+}
+
+class Bar extends Foo {
+    //
+}
+
+Bar.calssMethod() // 'Hello'
+
+/*
+    静态方法也可以通过super对象调用
+*/
+
+class Bar extends Foo {
+    static calssMethod() {
+        return super.classMethod() + 'too'
+    }
+}
+
+Bar.classMethod() // 'Hello too'
+```
+
+### 实例属性的新写法(这种写法的好处是所有的实例对象属性都定义在类的头部，一眼就能看出这个类有哪些实例属性)
+
+```js
+class Person {
+    constructor() {
+        this.type = 'human'
+    }
+    get value() {
+        return this.type
+    }
+}
+
+// 可以将实例属性定义在类的最顶层
+class Person {
+    type = 'human'
+    get value() {
+        return this.type
+    }
+}
+```
+
+### 私有方法和私有属性
+
+```js
+
 ```
