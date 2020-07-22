@@ -45,20 +45,40 @@ let c = new Point(3, 4)
 b.__proto__ === c.__proto__ // true
 ```
 
-### `class`中添加多个方法
+### `class`中添加多个方法，使用`Object.assign`
 
 ```js
 // 因为class中的方法都是定义在prototype对象上，所以可以使用Object.assign进行方法合并
 class Point {
-    constructor() { 
-        //
+    constructor(x, y) {
+        this.x = x
+        this.y = y
+
+    }
+
+
+    res() {
+        return this.x + this.y
     }
 }
 
+function cut() {
+    return this.x - this.y
+}
+
+function div() {
+    return this.x / this.y
+}
+
 Object.assign(Point.prototype, {
-    toString(){},
-    toValue(){}
+    cut,
+    div
 })
+
+const point = new Point(6, 3)
+console.log(point.res()) // 9
+console.log(point.cut()) // 3
+console.log(point.div()) // 2
 ```
 
 ### 取值函数(`getter`)和存值函数(`setter`)
@@ -206,8 +226,63 @@ class Person {
 }
 ```
 
-### 私有方法和私有属性
+### `extends` 继承
+
+> 被继承的为【父类】，继承父类的为【子类】，如果子类中存在与父类相同的方法，则不会继承父类的方法
 
 ```js
+class Father {
+    constructor(name) {
+        this.name = name
+    }
+    sayName() {
+        console.log(this.name + 'father')
+    }
+}
 
+class Son extends Father {
+    // 不写constructor 引擎会自动生成一个空的constructor
+
+    // 不会继承father类的sanName方法 
+    sayName() {
+        console.log(this.name + 'son')
+    }
+}
+
+```
+
+### `super`
+
+`super`关键字用来访问父类的`constructor`或者其他方法使用。子类使用构造器时必须使用`super`关键字来拓展构造器。
+如果子类覆盖了父类同名的方法，使用`super`关键字同样可以调用父类的方法，可以理解为`super`即为父类的一个实例对象
+
+```js
+class Father {
+    constructor(name) {
+        this.name = name
+    }
+    sayHi() {
+        console.log('Hi,' + this.name)
+    }
+}
+
+class Son extends Father {
+    constructor(name, age, sex) {
+        // 这里使用super 拿到了this
+        super(name)
+        // 拓展了两个变量 age sex
+        this.age = age
+        this.sex = sex
+    }
+
+    sayHi() {
+        // 调用父类的sayHi方法
+        super.sayHi()
+        console.log('age' + this.age )
+        console.log('sex' + this.sex )
+        console.log('name' + this.name )
+    }
+}
+
+const son = new Son('son',16,'man')
 ```
