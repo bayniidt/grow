@@ -256,6 +256,8 @@ class Son extends Father {
 `super`关键字用来访问父类的`constructor`或者其他方法使用。子类使用构造器时必须使用`super`关键字来拓展构造器。
 如果子类覆盖了父类同名的方法，使用`super`关键字同样可以调用父类的方法，可以理解为`super`即为父类的一个实例对象
 
+> 注意：`super`虽然代表了`Father`类的构造函数，但是在`Son`类中返回的是子类`Son`的实例，所以`super`内部的`this`指向的是`Son`，因此`super()`在这里相当于`Father.prototype.constructor.call(this)`
+
 ```js
 class Father {
     constructor(name) {
@@ -269,6 +271,7 @@ class Father {
 class Son extends Father {
     constructor(name, age, sex) {
         // 这里使用super 拿到了this
+        // Father.prototype.constructor.call(this)
         super(name)
         // 拓展了两个变量 age sex
         this.age = age
