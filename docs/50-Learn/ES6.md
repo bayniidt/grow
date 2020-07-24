@@ -289,3 +289,25 @@ class Son extends Father {
 
 const son = new Son('son',16,'man')
 ```
+
+### 私有属性#
+
+在类中封装某些内部细节，只暴露需要暴露的接口，减少耦合，就可以使用私有属性，这些属性只能在类的范围内读取/更改。外部不能直接读取/更改
+
+```js
+class User {
+    #name;
+
+    constructor(name) {
+        this.#name = name
+    }
+
+    getName() {
+        return this.#name
+    }
+}
+
+const user = new User('张三')
+user.getName() // 张三
+user.#name  // 报错
+```
