@@ -319,3 +319,71 @@ const newObj = new Proxy(obj, {
 
     2. `React`的状态管理，`Vue`的对象属性
     在`React`中必须通过`setState()`方法更新状态，而在Vue中直接由`data`进行管理，在开发大型应用中，使用`Redux`或`Vuex`是必须的
+
+
+## 2020-07-30
+
+### HTML中的document对象有什么作用
+
+document对象是HTML文档的根节点，可以通过该对象来对页面中的DOM进行访问
+
+```js
+// document对象的属性
+document.body
+document.URL
+document.cookie
+document.title
+
+// document对象的方法
+document.close()
+document.getElementById()
+document.open()
+document.write() // 向文档写 HTML 表达式 或 JavaScript 代码。
+document.writeIn() // 等同于 write() 方法，不同的是在每个表达式之后写一个换行符。
+```
+
+### HTMl5 那些操作可以优化SEO
+
+1. 标签语义化，代码结构清晰 header nav footer section article audio video ...
+
+2. 
+
+### css盒模型的区别
+
+盒模型： 内容content + 内边距padding + 外边距margin + 边框border
+
+> 标准盒模型与IE盒模型的区别在于内容的计算方式不同
+
+- 标准盒模型（box-sizing: content-box）： 宽度 === 内容content
+
+- IE盒模型（box-sizing: border-box）： 宽度 === 内容content + 内边距padding + 边框border
+
+### body事件捕捉机制和冒泡
+
+> 事件捕捉从上而下，事件冒泡从下而上。DOM事件流：事件捕获-->事件目标-->事件冒泡
+
+```js
+ 阻止事件冒泡： event.stopPropagation()
+ 阻止事件捕捉： addEventListener() 监听函数第三个参数为 false
+ 阻止默认事件： preventDefault()
+```
+
+### 解决回调地狱的方法
+
+1. Promis 
+
+2. async await 
+
+3. Generrator 函数 
+
+4. Observerble 发布订阅
+
+### Promise.then reject后 catch还会继续执行吗?
+
+### ES5 + ES6 的值类型有什么
+
+
+
+
+
+
