@@ -54,9 +54,172 @@
         // arr.forEach(item => item= item*2)
         // console.log(arr);
 
-        const arr = [1,2,3]
-        console.log(arr.indexOf(2));
+        // const arr = [1,2,3]
+        // // console.log(arr.indexOf(2));
+        // const newArr = arr.map(item => item *2)
+        // console.log(newArr);
+
+        // const map = Array.prototype.map
+        // let a = map.call('Hello world', x => x.charCodeAt(0))
+        // console.log(a);
+        // const arr = [1,2,3]
+        // const pop = arr.pop()
+        // console.log(arr,pop);
+
+        // const arr = [1,2,3]
+        // const len = arr.push(4,5,6)
+        // console.log(arr,len);
+        // const sum = [1,2,3,4].reduce((prev,curr) => prev + curr)
+        // console.log(sum);
+
+        // const arr = [1,2,3,4]
+        // // arr.reverse()
+        // const shift = arr.shift()
+        // console.log(arr,shift);
+
+        // const arr = [1,2,3,4]
+        // while((i = arr.shift()) !== undefined) {
+        //     console.log(i,arr)
+        // }
+
+        // const arr = [1,2,3,4,5]
+        // const even = arr.some(item => item % 2 === 0)
+        // console.log(even)
+
+        // const arr = [2,1,10,4,3]
+        // arr.sort((a,b) => a - b)
+        // console.log(arr);
+
+        // const str = ['b','p','i','t']
+        // str.sort()
+        // console.log(str);
+
+
+        // const arr = [1, 30, 4, 21, 100000]
+        // arr.sort((a,b) => a - b) // [1,2,3,4,10]
+
+        // console.log(arr);
+
+        // let arr = [1,2,3,4,5]
+        // let splice = arr.splice(1,0,6)
+        // let del = arr.splice(3)
+        // console.log(del,arr);
+
+        // const arr = [1,'a',new Date()]
+        // const localeString = arr.toLocaleString()
+        // console.log(localeString,arr);
+
+        // const arr = [1,2,'a',{value:1},function(){return 1+1},null]
+        // let str = arr.toString()
+        // console.log(str);
+
+        // const arr = [1,2,3]
+        // arr.unshift([0,1,2])
+        // console.log(arr);
+
+        // const arr = ['a','b','c']
+        // let val = arr.values()
+        // console.log(val);
+
+        // for (const values of val) {
+        //         console.log(values)
+        // }
+
+        // const num = [5,6,1,2]
+        // const max = Math.max.apply(null, num)
+        // console.log(max);
+
+        // const arr1 = [1,2,3]
+        // const arr2 = ['a','b','c']
+        // arr1.push.apply(arr1,arr2)
+        // console.log(arr1) //  [1, 2, 3, "a", "b", "c"]
+
+        Function.prototype.myCall = function(context, ...arg) {
+            const fn = Symbol('临时属性')
+            context[fn] = this
+            context[fn](...arg)
+            delete context[fn]
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </script>
+
 </body>
 
 </html>

@@ -189,7 +189,229 @@ console.log(arr.indexOf(4)) // -1
 > 将数组中所有的元素拼接成一个字符串（根据`separator 分隔符参数`），并返回这个字符串。如果`数组为空`，则返回`空字符串`。如果元素为`undefined`或`null`也会转换成`空字符串`
 
 ```js
+                { name: 'name', placeholder: '监控量ID' }
 const arr = ['hello','world','!']
 const str = arr.join('-') //hello-world-!
 const str1 = arr.join('') //helloworld!
+```
+
+## Array.prototype.map(fn)
+
+> 返回一个新数组，结果为数组中每个元素调用一次`fn`函数后返回，`map()`不修改原数组，但可以再`fn回调函数`中修改
+
+```JS
+const arr = [1,2,3]
+const newArr = arr.map(item => item * 2) // [2,4,6]
+
+// 获取String中每个字符串对应的ASCII码
+const map = Array.prototype.map
+let a = map.call('Hello world', x => x.charCodeAt(0)) // [72, 101, 108, 108, 111, 32, 119, 111, 114, 108, 100]
+```
+
+## Array.prototype.pop()
+
+> 删除数组中最后一个元素，并返回这个元素的值。此方法改变原数组。`pop`方法根据`length`属性来判断最后一个元素的位置，如果不包含`length`或`length`不为`Number`则会将`length`置为`0`并返回`undefined`
+
+```JS
+const arr = [1,2,3]
+const pop = arr.pop() // 3
+console.log(arr)  // [1,2]
+```
+
+## Array.prototype.push(elm)
+
+> 将一个或多个元素添加到数组末尾，并返回数组的新长度
+
+```js
+const arr = [1,2,3]
+const length = arr.push(4,5,6) // 6
+console.log(arr) //[1,2,3,4,5,6]
+```
+
+## Array.prototype.reduce(fn)
+
+> `reduce`方法对数组中每个元素执行`fn函数`（升序执行），将最后的结果返回
+
+- [1,2,3].reduce((prev,curr) => prev+ curr) === 1 + 2 + 3  
+
+    1. prev: 第一个元素 
+    2. curr：第二个元素
+
+    下一轮循环
+
+    1. prev：第一个元素与第二个元素求得的值
+    2. curr：第三个元素
+
+- `fn回调`函数接收`4`个参数
+
+    1. acc - 累计器【累计器回调的值】
+    2. cur - 当前值【数组正在处理的元素】
+    3. idx - 当前索引【数组正在处理的元素的索引】
+    4. src - 源数组【调用reduce的数组】
+    5. initialValue - 额外参数，回调开始的初始值，提供初始值则从下标`0`开始，如果不提供则从下标`1`开始，
+
+```js
+const sum = [1,2,3,4].reduce((prev,curr) => prev + curr) // 10
+
+/*
+    回调函数第一次执行时，accumulator 和currentValue的取值有两种情况：如果调用reduce()时提供了initialValue，accumulator取值为initialValue，currentValue取数组中的第一个值；如果没有提供 initialValue，那么accumulator取数组中的第一个值，currentValue取数组中的第二个值。
+*/
+
+```
+
+## Array.prototype.reverse()
+
+> 将数组中的元素位置颠倒，并返回该数组，此方法会改变原数组。
+
+```js
+const arr = [1,2,3,4]
+arr.reverse() // [4,3,2,1]
+```
+
+## Array.prototype.shift()
+
+> 将数组中第一个元素删除，并返回该元素，此方法会改变原数组。
+
+```js
+const arr = [1,2,3,4]
+const shift = arr.shift()
+console.log(arr,shift) // [2,3,4] 1 
+
+// 在while循环中使用shift()
+let arr = [1,2,3,4]
+while((i = arr.shift()) !== undefined) {
+    console.log(i,arr) // 1 [2,3,4] -- 2 [3,4] -- 3 [4] -- 4 [] 
+}
+```
+
+## Array.prototype.slice(begin,end)
+
+> 返回一个新的数组对象，这个对象是由`begin`与`end`觉得的原数组的**浅拷贝**（包括`begin`，不包括`end`），此方法不会改变原数组
+
+```js
+const arr = [1,2,3,4,5]
+const slice = arr.slice(2) // [3,4,5]
+const slice2 = arr.slice(2,4) // [3,4] 不包含下标为4（end）的元素5
+```
+
+## Array.prototype.some(fn)
+
+> 测试数组中是否至少有一个元素通过`fn函数`的测试，返回一个布尔值。如果使用空数组进行测试，任何情况下返回的都是`false`，一旦找到符合条件的元素，立刻返回`true`
+
+```js
+const arr = [1,2,3,4,5]
+const even = arr.some(item => item % 2 === 0)  // true
+```
+
+## Array.prototype.sort(fn)
+
+> 根据`fn`函数对数组的元素进行排序，并返回数组。此方法会改变原数组。
+
+```js
+// 不传递比较函数的情况下，使用默认比较，将元素转为字符串，然后比较UTF-16代码单元值
+const arr = [1, 30, 4, 21, 100000]
+arr.sort() //  [1, 100000, 21, 30, 4]
+
+const str = ['b','p','i','t']
+str.sort() // ["b", "i", "p", "t"]
+
+// 传入比较函数 a-b 升序 b-a 降序
+const arr = [1, 30, 4, 21, 100000]
+arr.sort((a,b) => a - b) //  [1, 4, 21, 30, 100000]
+```
+
+## Array.prototype.splice(start, deleteCount, item1 ...)
+
+> `splice()`方法通过删除或替换现有元素或者原地添加新的元素来修改数组，**并以数组的形式返回被修改的内容**，此方法会**修改原数组**。
+
+`start`: 指定修改的开始位置，从0开始
+`deleteCount`: 要移除的数组元素的个数
+`item1`, `item2` ... : 要添加到数组的元素，从start开始，如果不指定，`splice()`将只删除数组元素
+
+- `splice()`的返回值：返回的是被删除的元素组成的数组，如果没有删除则返回一个空数组
+
+```js
+const arr = [1,2,3,4,5]
+/* 
+    1: 从下标为1的元素开始 
+    0：删除0个元素
+    6：添加的元素
+*/
+let splice = arr.splice(1,0,6) // []
+console.log(arr)  // [1, 6, 2, 3, 4, 5]
+
+/*
+    在不指定删除元素个数的情况下，默认从开始元素起，全部删除
+    3: 从下标为3的元素开始 ，往后的全部删除
+*/
+let del = arr.splice(3) //  [3, 4, 5]
+console.log(arr)  // [1,6,2]
+
+```
+
+## Array.prototype.toLocaleString()
+
+> 返回一个字符串表示数组中的元素。数组中的元素将使用各自的`toLocaleString()`方法转成字符串。此方法不会改变原数组。
+
+```js
+const arr = [1,'a',new Date()]
+const localeString = arr.toLocaleString() // 1,a,8/11/2020, 2:29:34 PM
+```
+
+## Array.prototype.toString()
+
+> 返回一个字符串，表示其指定的数组及其元素
+
+```js
+const arr = [1,2,'a',{value:1},function(){return 1+1},null]
+arr.toString() // 1,2,a,[object Object],function(){return 1+1},
+```
+
+## Array.prototype.unshift()
+
+> 将一个或者多个元素添加到数组的开头，并返回该数组的新长度。此方法改变原数组。
+
+```js
+const arr = [1,2,3]
+let len = arr.unshift(0,1,2) // 6
+console.log(arr) //[0, 1, 2, 1, 2, 3]
+
+arr.unshift([0,1,2]) // [[0,1,2],1,2,3]
+
+```
+
+## Array.prototype.values()
+
+> 返回一个新的Array Iterator 对象，该对象包含数组每个索引的值
+
+```js
+const arr = ['a','b','c']
+let val = arr.values() // Array Iterator {}
+
+for (const values of val) {
+    console.log(values) // a b c
+}
+
+```
+
+## Function.prototype.apply(thisArg,[argsArray])
+
+> 调用一个具有给定`this`值的函数，以及作为一个数组提供的参数。**`call()`与`apply()`方法类似，区别在于`call()`接受参数列表，而`apply()`接受参数数组**
+
+- 当在没有固定的`thisArg`参数时，传递`null`或`undefined`，`this`则会指向`window`全局对象
+
+    `thisArg`: 必选参数，在函数执行时的`this`指向
+
+    `argsArray`: 可选参数，一个数组或伪数组
+
+```js
+const num = [5,6,1,2]
+const max = Math.max.apply(null, num) // 6
+
+// 使用apply 合并两个数组
+const arr1 = [1,2,3]
+const arr2 = ['a','b','c']
+// 将this指向为arr1
+arr1.push.apply(arr1,arr2) 
+console.log(arr1) // [1,2,3,'a','b','c']
 ```
