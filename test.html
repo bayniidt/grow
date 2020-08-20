@@ -134,13 +134,37 @@
         // arr1.push.apply(arr1,arr2)
         // console.log(arr1) //  [1, 2, 3, "a", "b", "c"]
 
-        Function.prototype.myCall = function(context, ...arg) {
-            const fn = Symbol('临时属性')
-            context[fn] = this
-            context[fn](...arg)
-            delete context[fn]
+        // Function.prototype.myCall = function(context, ...arg) {
+        //     const fn = Symbol('临时属性')
+        //     context[fn] = this
+        //     context[fn](...arg)
+        //     delete context[fn]
+        // }
+        
+        // const module = {
+        //     x: 42,
+        //     getX() {
+        //         return this.x
+        //     }
+        // }
+
+        // const test = module.getX
+        // console.log(test());
+
+        // const boundGetX = test.bind(module)
+        // console.log(boundGetX());
+
+        function Product(name, price) {
+            this.name = name
+            this.price = price
         }
 
+        function Food(name, price) {
+            Product.call(this, name, price)
+            this.category = 'food'
+        }
+
+        console.log(new Food('cheese',5))
 
 
 

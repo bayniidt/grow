@@ -320,7 +320,7 @@ const arr = [1, 30, 4, 21, 100000]
 arr.sort((a,b) => a - b) //  [1, 4, 21, 30, 100000]
 ```
 
-## Array.prototype.splice(start, deleteCount, item1 ...)
+## Array.prototype.splice(...)
 
 > `splice()`方法通过删除或替换现有元素或者原地添加新的元素来修改数组，**并以数组的形式返回被修改的内容**，此方法会**修改原数组**。
 
@@ -394,7 +394,7 @@ for (const values of val) {
 
 ```
 
-## Function.prototype.apply(thisArg,[argsArray])
+## Function.prototype.apply()
 
 > 调用一个具有给定`this`值的函数，以及作为一个数组提供的参数。**`call()`与`apply()`方法类似，区别在于`call()`接受参数列表，而`apply()`接受参数数组**
 
@@ -414,4 +414,77 @@ const arr2 = ['a','b','c']
 // 将this指向为arr1
 arr1.push.apply(arr1,arr2) 
 console.log(arr1) // [1,2,3,'a','b','c']
+```
+
+## Function.prototype.bind()
+
+> `bind()`创建一个新的函数，在`bind()`被调用时，这个新函数的`this`被指向为`band()`的第一个参数，而其余参数作为这个新函数的参数，供调用时使用。注意：**这个新函数不会自动调用，需要再次手动调用**
+
+- thisArg: 调用新函数绑定的this值
+
+- arg1, arg2 ... : 新函数调用时使用的参数
+
+- 返回值：返回一个原函数的拷贝，并拥有指定的this指向和初始参数
+
+
+```JS
+const module = {
+    x: 42,
+    getX() {
+        return this.x
+    }
+}
+
+const unboundGetX = module.getx
+// 此时的unboundGetX调用this指向window
+console.log(unboundGetX()) // undefined 
+
+const boundGetX = unboundGetX.bind(module) // 将this指向module
+console.log(boundGetX()) // 42
+
+```
+
+## Function.prototype.call()
+
+> `call()`使用一个指定的`this`和单独给出的一个或多个参数来调用一个函数。该方法与`apply()`相似，区别在于`call()`接受一个参数列表，而`apply()`接受一个参数数组
+
+```js
+function Product(name, price) {
+    this.name = name
+    this.price = price
+}
+
+function Foo(name, price) {
+    // 传入当前this 与参数name price 等同于调用Product(name, price)
+    Product.call(this, name, price)
+    this.category = 'food'
+}
+
+console.log(new Food('cheese', 5).name) // cheese
+console.log(new Food('cheese', 5)) // Food {name: "cheese", price: 5, category: "food"}
+```
+
+## 纯函数: 不可变性，函数不改变接收的参数也不影响外部任何环境
+
+> 纯函数是函数式编程中的核心概念： 
+
+- 1· 函数至少接收一个参数
+
+- 2· 函数至少返回一个值或其他函数
+
+- 3· 函数不应该修改或影响任何传给它的参数
+
+```js
+let colorObj = {
+    title: 'lawn',
+    color: '#0094ff',
+    rating: 0
+}
+// 非纯函数 修改了参数color
+function rateColor(color, rating) {
+    color.rating = rating
+    return color
+}
+// 纯函数 利用对象拓展浅拷贝了一份color的副本 并返回这个副本
+const rateColor = (color, rating) => ({ ...color, rating})
 ```
