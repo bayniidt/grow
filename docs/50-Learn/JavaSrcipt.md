@@ -464,7 +464,9 @@ console.log(new Food('cheese', 5).name) // cheese
 console.log(new Food('cheese', 5)) // Food {name: "cheese", price: 5, category: "food"}
 ```
 
-## 纯函数: 不可变性，函数不改变接收的参数也不影响外部任何环境
+## 纯函数
+
+不可变性，函数不改变接收的参数也不影响外部任何环境
 
 > 纯函数是函数式编程中的核心概念： 
 
@@ -487,4 +489,47 @@ function rateColor(color, rating) {
 }
 // 纯函数 利用对象拓展浅拷贝了一份color的副本 并返回这个副本
 const rateColor = (color, rating) => ({ ...color, rating})
+```
+
+## 高阶函数
+
+可以操作其他函数的函数，可以将函数作为参数传递，也可以返回一个函数
+
+- 将其他函数作为参数传递的函数：`Array.map` `Array.filter` `Array.reduce`
+
+```js
+// 接收一个布尔与两个函数， 并根据布尔变量执行参数中的函数
+const invokeIf = (condition, fnTrue, fnFalse) => condition ? fnTrue() : fnFalse()
+
+const showWelcome = () => console.log('Welcome!')
+const showUnauthorized = () => console.log('Unauthorized!')
+
+invokeif(true, showWelcome, showUnauthorized)
+invokeif(false, showWelcome, showUnauthorized)
+```
+
+## 函数柯里化 ：待学习
+
+> 将函数中某个操作的结果保留，直到其余部分后续也完成后可以一并提供的机制。通过在一个函数中返回另一个函数实现
+
+```js
+// 待学习
+const userLogs = userName => message => console.log(`${userName} -> ${message}`)
+
+const log = userlog('grandpa23')
+
+log('attempted to load 20 fake members')
+```
+
+## 递归
+
+> 函数本身调用自己，递归必须有出口（停止判断）
+
+```js
+const countdown = value => {
+    console.log(value)
+    // 如果value大于0 ， 调用countdown 并传入value -1
+    return value > 0 ? countdown(value -1 ) : value
+}
+countdown(10)
 ```

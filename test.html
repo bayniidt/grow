@@ -154,17 +154,49 @@
         // const boundGetX = test.bind(module)
         // console.log(boundGetX());
 
-        function Product(name, price) {
-            this.name = name
-            this.price = price
+        // function Product(name, price) {
+        //     this.name = name
+        //     this.price = price
+        // }
+
+        // function Food(name, price) {
+        //     Product.call(this, name, price)
+        //     this.category = 'food'
+        // }
+
+        // console.log(new Food('cheese',5))
+
+        // const colors = [
+        //     {id:1,title:'red',rating:3},
+        //     {id:2,title:'blue',rating:4},
+        //     {id:3,title:'pink',rating:5},
+        //     {id:4,title:'white',rating:6},
+        // ]
+
+
+        // const hashColors = colors.reduce(
+        //     (hash,{id,title,rating}) =>{
+        //         hash[id] = { title, rating}
+        //         return hash
+        //     },
+        //     {}
+        // )
+
+        // console.log(hashColors);
+
+        // const userLogs = userName => message => console.log(`${userName} -> ${message}`)
+
+        // const log = userlog('grandpa23')
+
+        // log('attempted to load 20 fake members')
+
+        const countdown = (value) => {
+            console.log(value);
+            return value > 0 ? countdown(value-1) : value
         }
 
-        function Food(name, price) {
-            Product.call(this, name, price)
-            this.category = 'food'
-        }
+        countdown(10)
 
-        console.log(new Food('cheese',5))
 
 
 
