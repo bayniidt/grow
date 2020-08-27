@@ -406,6 +406,13 @@ export default class RefFormDemo extends React.Component {
 
 ## 状态提升
 
+> 组件之间的数据交互，将多个子组件交互的状态提升到父组件，再通过父组件传值的方式传递到子组件中
+
+```js
+
+```
+
+
 ##
 
 ##
