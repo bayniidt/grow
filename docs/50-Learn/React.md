@@ -153,6 +153,7 @@ class StateCom extends React.Component {
 
 ## 生命周期函数
 
+> 在组件被渲染完毕之前调用setState方法不会启动更新生命周期。在组件渲染完成之后调用setState方法就会启动更新生命周期。
 <img :src="$withBase('/image/react-life.png')">
 
 ```js 
