@@ -414,6 +414,184 @@ export default class RefFormDemo extends React.Component {
 ```
 
 
+##  react-router
+
+安装命令：`npm ireact-router-dom --save`
+
+路由的作用：
+    单页面应用（SPA），路由跳转：切换视图显示
+
+```js
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+
+function App() {
+    return (
+        <div className="App">
+            /*
+            所有需要路由跳转的页面最外层由 <Router /> 对象包裹
+            path：路由跳转路径
+            component：路由跳转组件
+            注意： 最外层Router有r 里层Route没r
+            */
+            <Router>
+                <Route path='/home' component={Home} />
+                <Route path='/mine' component={Mine} />
+            </Router>
+        </div>
+    );
+}
+```
+
+> `BrowserRouter` & `HashRouter`
+
+```js
+// HashRouter: 使用锚点链接形式，一般情况下会自动转换为a标签。地址栏会带#号
+// BrowserRouter：使用H5新特性， history.push 上线后需要后台做重定向，否则会有404BUG
+import { HashRouter as Router, Route, Link } from 'react-router-dom'
+```
+
+> `Link`
+
+```js
+import React, { Component } from 'react'
+import {  Link } from 'react-router-dom'
+
+export default class Nav extends Component {
+    render() {
+        return (
+            <div>
+                <ul>
+                    <li>
+                        // 要跳转的地址
+                        <Link to='/home'>Home</Link>
+                    </li>
+                    <li>
+                        <Link to='/mine'>Mine</Link>
+                    </li>
+                </ul>
+            </div>
+        )
+    }
+}
+```
+
+> `exact` & `strict`
+
+exact: 路径精准匹配，地址不匹配则不渲染
+
+strict: 路径严格匹配，末尾添加斜杠不允许匹配
+
+以上两个属性同时使用 否则strict不生效
+
+```js
+function App() {
+    return (
+        <div className="App">
+            <Router>
+                <Nav />
+                <Route path='/home' component={Home} />
+                <Route exact strict path='/mine' component={Mine} />
+                <Route path='/mine/ucenter' component={UCenter} />
+            </Router>
+        </div>
+    );
+}
+```
+
+> `Switch` 匹配唯一一个页面，404页面时需要
+
+```js
+function App() {
+    return (
+        <div className="App">
+            <Router>
+                <Nav />
+                // 使用Switch包裹住需要匹配的页面
+                <Switch>
+                    <Route path='/home' component={Home} />
+                    <Route exact strict path='/mine' component={Mine} />
+                    <Route path='/mine/ucenter' component={UCenter} />
+                    <Route component={NotFound} />
+                </Switch>
+            </Router>
+        </div>
+    );
+}
+```
+
+> 路由跳转携带参数
+
+1. 通过在路由地址后添加:(参数名)的方式传递，并且在组件中使用`props.match.params.参数名`接收
+
+```js
+// APP
+function App() {
+    return (
+        <div className="App">
+            <Router>
+                    // 参数名后添加?号代表参数可有可无
+                    <Route path='/mine/ucenter/:id?' component={UCenter} />
+            </Router>
+        </div>
+    );
+}
+
+// UCenter
+const UCenter = (props) => {
+    console.log(props)
+    return ( 
+        <div>
+            Hello UCenter : 
+            <p> id: {props.match.params.id}</p>
+        </div>
+    )
+}
+```
+
+2. 使用`new URLSearchParams(props.location.search)`读取地址栏参数
+
+```js
+// URL为：http://localhost:3000/mine/name=iwen&age=20
+const Mine = (props) => {
+
+    const params = new URLSearchParams(props.location.search)
+    console.log(params.get('name'));
+
+    return (
+        <div>
+            Mine
+            <p>name - {params.get('name')}</p>
+            <p>age - {params.get('age')}</p>
+        </div>
+    )
+}
+
+
+
+```
+
+3. 使用`querystring.parse`
+
+```js
+import querystring from 'querystring'
+// URL: http://localhost:3000/mine?name=iwn&age=20
+const Mine = (props) => {
+    const params = querystring.parse(props.location.search)
+    // 注意第一个参数前的问号?
+    console.log(params['?name']);
+    return (
+        <div>
+            Mine 
+        </div>
+    )
+}
+```
+##
+
+##
+
+##
+
 ##
 
 ##
