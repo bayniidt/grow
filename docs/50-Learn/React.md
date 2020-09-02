@@ -586,7 +586,243 @@ const Mine = (props) => {
     )
 }
 ```
-##
+
+> 重定向 `<Redirect from='/hellomine' to='/mine' />` 只要输入hellomine都会跳转到mine
+
+重定向的作用：登陆判断或权限判断
+
+```js
+function App() {
+    return (
+        <div className="App">
+            <Router>
+                    <Redirect from='/hellomine' to='/mine' />
+                    <Route exact strict path='/mine' component={Mine} />
+            </Router>
+        </div>
+    );
+}
+```
+
+> `props.history.push('/')` 跳转指定路由
+
+history对象中的方法：
+
+- `push()` : 叠加，可以后退
+- `go()`  
+- `goBack()` 
+- `replace()`： 退换，不可后退
+
+```JS 
+const Mine = (props) => {
+
+    const handlerClick = () => {
+        props.history.push('/home')
+    }
+
+    return (
+        <div>
+            Mine
+            <button onClick={handlerClick}>black</button> 
+        </div>
+    )
+}
+```
+
+> `Prompt`：类似于离开弹框提示是否确定要离开
+
+```js
+class Shop extends Component {
+    state = {
+        name: ''
+    }
+    render() {
+        return (
+            <div>
+                // when属性只支持布尔值类型数据，所以使用双感叹号获取布尔值
+                <Prompt when={!!this.state.name} message={'确定离开？'}/>
+                <input type="text" value={this.state.name} onChange={e => this.setState({name: e.target.value})} />
+            </div>
+        );
+    }
+}
+```
+
+## Redux
+
+- React中的数据传递： props，回传时间，共同的父元素或子元素中间传递。在多个文件需要互相传递数据时，就可以使用Redux来管理传递的数据（状态）。与vuex功能相似
+
+安装命令： `npm i --save-dev redux`
+
+> 创建Store:  `createStore`
+
+```js
+import { createStore } from 'redux'
+// 引入reducer （修改state的唯一方法）
+import reducer from './reducers/counter'
+
+// 创建仓库
+const store = createStore(reducer)
+
+
+const render = () => {
+    ReactDOM.render(
+        <React.StrictMode>
+            <App
+                {/* 传递事件dispatch类型 */}
+                onIncrement={() => store.dispatch({ type: 'INC' })}
+                onDecrement={() => store.dispatch({ type: 'DEC' })}
+                {/* 获取数据 并传到子组件 */}
+                value={store.getState()}
+            />
+        </React.StrictMode>,
+        document.getElementById('root')
+    );
+}
+
+// 首次渲染DOM
+render()
+
+// 监听数据变化
+store.subscribe(render)
+```
+
+> `Action` 
+Action是把数据从应用传到store的唯一来源，本质上是一个js对象，再action内必须使用一个字符串类型的type属性来表示将要执行的动作。
+
+```JS
+// 这是一个基本的action num为Action创建函数接收的参数，type为即将要执行的动作
+{
+    type: "INC",
+    num
+}
+
+// 这是一个基本的Action创建函数，它将一个基本的action作为结果返回，一般情况下只需要将改函数传递给store.dispatch即可
+function INC(num) {
+    return {
+        type: "INC",
+        num
+    }
+}
+```
+
+> `Reducer`
+Reducer指定了应用状态的变化如何响应actions并发送到store的，actions只是描述了有事情发生了这个事实，并没有描述应用如何更新state。
+
+reducer就是一个纯函数，接收旧的state和action，并返回新的state。**注意：**保持reducer函数的纯净，不允许修改传入的参数，API请求，路由跳转，调用非纯函数等操作
+
+```js
+// 接受两个参数，根据action的type来进行判断，并把最新的state返回
+const reducer = (state = 0, action) => {
+    switch (action.type) {
+        case actions.INC:
+            return state + action.num
+        case actions.DEC:
+            return state - action.num
+        default:
+            return state
+    }
+
+}
+```
+
+
+> `npm --save-dev react-redux` 将react与redux关联
+
+- `Provider` & `connect`
+store 里能直接通过 store.dispatch() 调用 dispatch() 方法，但是多数情况下你会使用 react-redux 提供的 connect() 帮助器来调用
+
+```js
+// index.js
+import { Provider } from 'react-redux'
+ReactDOM.render(
+    <React.StrictMode>
+        // 使用Provider包裹组件
+        <Provider store={store}>
+            <App />
+        </Provider>
+    </React.StrictMode>,
+    document.getElementById('root')
+
+)
+
+// App.js
+import { connect } from 'react-redux'
+
+class App extends React.Component {
+    render() {
+        console.log(this.props)
+        return (
+            <div className="App">
+                <p>{this.props.value}</p>
+                <button >increment</button>
+                <button >decrement</button>
+            </div>
+        );
+    }
+}
+// 状态处理方法
+const mapStateToProps = state => {
+    return {
+        counter: state
+    }
+}
+// 使用connect将状态处理函数与App组件关联
+export default connect(mapStateToProps)(App)
+```
+
+> `bindActionCreators` 
+把一个 value 为不同 action creator 的对象，转成拥有同名 key 的对象。同时使用 dispatch 对每个 action creator 进行包装，以便可以直接调用它们。bindActionCreators() 可以自动把多个 action 创建函数 绑定到 dispatch() 方法上。
+
+```js
+// 引入所有的dispatch
+import * as counterActions from './actions/counter'
+// 引入bindActionCreators
+import { bindActionCreators } from 'redux'
+
+class App extends React.Component {
+    render() {
+
+        console.log(this.props)
+        // 打印结果 { counter: 0, increment: ƒ, decrement: ƒ }
+
+        return (
+            <div className="App">
+                <p>{this.props.counter}</p>
+                <button onClick={() => this.props.counterActions.increment()}>increment</button>
+                <button onClick={() => this.props.counterActions.decrement()}>decrement</button>
+            </div>
+        );
+    }
+}
+
+const mapStateToProps = state => {
+    return {
+        counter: state
+    }
+}
+
+
+const mapDispatchToProps = dispatch => {
+    return {
+        // 将所有的dispatch与组件连接？
+        counterActions: bindActionCreators(counterActions,dispatch)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
+```
+
+> `combineReducers` 
+合并reducer
+
+
+
+
+
+
+
+
 
 ##
 
