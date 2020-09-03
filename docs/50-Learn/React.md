@@ -66,7 +66,14 @@ let el = (
 
 ## 组件
 
-组件文件的后缀名，可以是js，也可以是jsx，例如vue的 App.vue ，在React中，一切都是由组件来组成，一个项目中有可能有成千上万个组件，根据高内聚低耦合的思想，将功能组件化
+> 组件文件的后缀名，可以是js，也可以是jsx，例如vue的 App.vue ，在React中，一切都是由组件来组成，一个项目中有可能有成千上万个组件，根据高内聚低耦合的思想，将功能组件化
+组件可分为：
+1. 根据组件定义方式：函数式组件(Functional Component)， 类组件(Class Component)
+2. 根据组件内部是否有状态需要维护：无状态组件(Stateless Component)，有状态组件(Stateful Component)
+3. 根据组件不同的职责： 展示型组件(Presentational Component)，容器型组件(Container Component)
+    
+    - 函数组件、无状态组件、展示型组件主要关注「UI的展示」
+    - 类组件、有状态组件、容器型组件主要关注「数据逻辑」
 
 - `class` 类组件
 
@@ -109,6 +116,19 @@ class MyNav extends React.Component {
             </div>
         )
     }
+}
+```
+
+- 函数式组件
+函数式组件没有生命周期,函数式组件主要关注UI的展示
+
+```js
+function Components(prps) {
+    return (
+        <div>
+            {props.data}
+        <div>
+    )
 }
 ```
 
@@ -169,6 +189,18 @@ class StateCom extends React.Component {
 数据传递：
     父传子：在子组件标签名直接以属性方式传递，子组件使用props接收
     子传父：调用父组件的回调函数
+```
+
+`shouldComponentUpdate`: 
+参数1为新的props，参数2为新的state。可以根据这两个参数来判断返回的状态，来确定子组件是否随着父组件的更新而更新
+
+```js
+shouldComponentUpdate(nextProps, nextState) {
+        if (nextProps.num === this.props.num) {
+            return false
+        }
+        return true
+    }
 ```
 
 ## setState
@@ -711,6 +743,8 @@ Reducer指定了应用状态的变化如何响应actions并发送到store的，a
 
 reducer就是一个纯函数，接收旧的state和action，并返回新的state。**注意：**保持reducer函数的纯净，不允许修改传入的参数，API请求，路由跳转，调用非纯函数等操作
 
+**state:是只读的，唯一改变state的方法就是触发action，action是一个用于描述已经发生事件的普通对象**
+
 ```js
 // 接受两个参数，根据action的type来进行判断，并把最新的state返回
 const reducer = (state = 0, action) => {
@@ -824,10 +858,181 @@ export default connect(mapStateToProps, mapDispatchToProps)(App)
 
 
 
-##
+## Fragment
+类似与Vue的template，在结构中不会渲染，只做容器用
+```js
+import React, { Component, Fragment } from 'react';
 
-##
+class Demo1 extends Component {
+    render() {
+        return (
+            <Fragment>
+                <li>Hello</li>
+                <li>Hello</li>
+            </Fragment>
+        );
+    }
+}
 
+class Demo extends Component {
+    render() {
+        return (
+            <div>
+                <ul>
+                    <Demo1 />
+                </ul>
+            </div>
+        );
+    }
+}
+
+export default Demo;
+```
+
+## 高阶组件
+1. 高阶组件必须是一个函数
+2. 参数是一个组件
+3. 返回值也是一个组件
+
+```js
+import React from 'react'
+
+// Components形参为一个组件
+// 该函数返回一个组件 可以在这个函数中做各种业务处理
+const withFetch = Components => {
+    return class extends React.Component {
+        render() {
+            return (
+                /* 展开props */
+                <Components { ...this.props}/>
+            )
+        }
+    }
+}
+
+// 这里的高阶组件意义：  让MyData在被渲染之前经过withFetch的一层处理，再进行渲染
+class MyData extends React.Component {
+    render() {
+        return (
+            <div>
+                MyData: { this.props.data}
+            </div>
+        )
+    }
+}
+
+// WithFetch 为 经过withFetch处理过返回的组件
+const WithFetch = withFetch(MyData)
+
+export default class Demo3 extends React.Component {
+    render() {
+        return (
+            <div>
+                <WithFetch data={'Hello WithFetch'} />
+            </div>
+        )
+    }
+}
+```
+
+高阶组件实际应用： 提高代码复用性
+
+- 两个相似的组件，只有API请求的URL不同和渲染数据不同，就可以使用高阶组件来提出重复代码
+
+<img :src="$withBase('/image/react-components.png')">
+
+```js
+// withFetch.jsx
+import React, { Component } from 'react';
+// 注意这里的函数写法，2个箭头函数
+const withFetch = url => View => {
+    return class extends Component {
+        constructor() {
+            super()
+            // 状态
+            this.state = {
+                loading: true,
+                data: null
+            }
+        }
+
+        // 处理API网络请求
+        componentDidMount() {
+            fetch(url)
+                .then(res => res.json())
+                .then(data => {
+                    this.setState({
+                        loading: false,
+                        data
+                    })
+                })
+        }
+
+        render() {
+            // 渲染页面
+            if (this.state.loading) {
+                return ( 
+                    <div>loading...</div>
+                )
+            }
+            return (
+                <View data={ this.state.data } />
+            )
+        }
+    }
+
+}
+
+export default withFetch
+```
+
+```js
+// NewBanenr.jsx
+import withFetch from '../weithFetch'
+
+const NewBanenr = withFetch('http://iwenwiki.com/api/blueberrypai/getIndexBanner.php')(props => {
+    return (
+        <div>
+            <ul>
+                {
+                    props.data.banner.map((item, index) => {
+                        return (
+                            <li key={index} >
+                                {item.title}
+                            </li>
+                        )
+                    })
+                }
+            </ul>
+        </div>
+    )
+})
+
+export default NewBanenr
+
+// NewChengpin.jsx
+import weithFetch from '../weithFetch'
+
+const NewChengpin = weithFetch('http://iwenwiki.com/api/blueberrypai/getChengpinInfo.php')(props => {
+    return (
+        <div>
+            <ul>
+                {
+                    props.data.chengpinInfo.map((item, index) => {
+                        return (
+                            <li key={index}>
+                                {item.title}
+                            </li>
+                        )
+                    })
+                }
+            </ul>
+        </div>
+    )
+})
+
+export default NewChengpin
+```
 ##
 
 ##
