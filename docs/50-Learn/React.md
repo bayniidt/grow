@@ -1033,6 +1033,85 @@ const NewChengpin = weithFetch('http://iwenwiki.com/api/blueberrypai/getChengpin
 
 export default NewChengpin
 ```
+
+## Hook
+
+hook: 钩子 。在react函数式组件中，无法使用state、生命周期等功能，hook提供了这些功能，并且让组件之间复用状态逻辑变得更加容易，也不用再去编写难懂的class类组件，生命周期函数，让组件编写与复用变得更容易。
+
+### `useState`
+
+创建一个state状态，并赋予初始值，react在更新时会保留这个state，并且会返回一个与this.setState函数功能一致的更新操作函数
+
+```js
+import React, { useState } from 'react'
+
+function Example() {
+    /*
+        使用数组解构，将调用useState函数返回的值解构出来，传递的参数为state初始值
+    **/
+    const [count,setCount] = useState(0)
+
+    return (
+        <div>
+            {/* 点击事件触发调用setCount函数并更改count的值 */}
+            <button onClick={() => setCount(count + 1)}>CLICKME</button>
+        </div>
+    )
+}
+```
+
+### `useEffect`
+
+useEffect === componentDidMount、componentDidUpdate、componentWillUnMount 
+
+react将这三个生命周期函数合并成一个useEffect Hook ，可以在useEffect中发送API网络请求或者进行DOM更新等等操作，也可以清除事件监听、定时器等等。 **React会在每次寻然后调用useEffect传入的函数**
+
+- useEffect 参数1：更新后执行的函数（可以是API网络请求 或者 DOM操作）
+
+    - 如果在参数1的函数中返回的也是一个函数，那么这个函数相当于在componentWillUnMount生命周期时执行的销毁函数（关闭定时器、取消事件监听等等）
+
+- useEffect 参数2： `[stateName]` 监听指定的state，当该state发生变化时才会重新更新useEffect Hook
+
+```js
+import React, { useState, useEffect } from 'react'
+function Example() {
+    const [count, setCount] = useState(0) // 初始化state
+    const [money, setMoney] = useState(0)
+    // 等同于 componentDidMount + componentDidUpdate
+    useEffect(()=>{
+        // 更新浏览器title
+        document.title = `You clicked ${count} times`
+        
+        // 组件销毁时调用，重置count
+        return () => {
+            setCount(0)
+        }
+    })
+
+    // 与useState一样 可以多次重复使用，将不同的业务逻辑代码抽离，不用将他们写在同一个生命周期函数中
+    useEffect(()=>{
+        console.log(money)
+        // 参数2为state监听，当指定的state发生变化时，才会重新更新useEffect Hook
+    },[money])
+
+
+}
+
+```
+
+
+
+
+
+
+##
+
+##
+
+##
+
+##
+
 ##
 
 ##
