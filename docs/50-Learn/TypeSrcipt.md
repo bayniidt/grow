@@ -66,6 +66,62 @@ let user: [string, number] = ['str', 123]
 
 ```
 
+## Assertion类型断言
+
+> 类型断言（Type Assertion）可以用来手动指定一个值的类型。
+
+```js
+
+function getLength(input: string | number) : number {
+    // const str = input as String
+    // if(str.length) return str.length
+    // const number = input as Number
+    // return number.toString().length
+
+    // return <boolean>input  // 不合法 联合类型中没有boolean类型
+
+    if((<string>input).length) {
+        return (<string>input).length
+    }else {
+        return input.toString().length
+    }
+}
+
+
+
+```
+
+## type 类型别名
+
+> 类型别名用来给一个类型起个新名字
+
+```js
+type PlusType = (x: number, y: number) => number
+function sum(x: number, y: number) number {
+    return x + y
+}
+const sum2: PlusType = sum
+
+// 联合类型，如果是字符串则直接返回，如果是函数则使用该函数的返回值作为返回值
+type NameResolver = () => string
+type NameOrResolver = string | NameResolver
+function getName(n: NameOrResolver ): string {
+    if(typeof n === 'string') return n
+    return n()
+}
+```
+
+## declare 环境声明
+
+>declare ：环境声明允许你安全的使用现有的 JavaScript 库，并且能让你的 JavaScript、CoffeeScript 或者其他需要编译成 JavaScript 的语言逐步迁移至 TypeScript。
+
+声明代码可以放入`.ts` 或者`.d.ts`后缀文件中
+```js
+// jQuery('#foo') // ts中无法识别
+
+declere var jQuery: (selector: string) => any
+```
+
 ## Interface 接口
 
 > 更关注某个对象如何进行使用，而不是关注这个对象本身

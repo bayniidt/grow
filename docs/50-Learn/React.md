@@ -1104,6 +1104,62 @@ function Example() {
 
 
 
+### `useRef`
+
+> useRef 返回一个可变的 ref 对象，其 .current 属性被初始化为传入的参数（initialValue）。返回的 ref 对象在组件的整个生命周期内保持不变。.current是一个实时状态，useRef 会在每次渲染时返回同一个 ref 对象，并且.current发生变化时不会重新渲染组件。常用于DOM访问
+
+```js
+import { useRef, useEffect } from 'react'
+
+const domRef = useRef<HTMLInputElement>(null)
+
+useEffect(() => {
+    if(domRef && domRef.current) {
+        // 调用DOM事件
+        domRef.current.focus()
+    }
+})
+
+return (
+    <input type='text' ref={domRef} />
+)
+```
+
+
+### `useContext`
+
+> 在React中，全局状态（语言类型中英文、主题、用户信息...）在程序中很多组件都需要使用，传递全局状态的时候就可以使用useContext，避免多层传递，调用了 useContext 的组件总会在 context 值变化时重新渲染。如果重渲染组件的开销较大，你可以 通过使用 memoization 来优化。
+
+```js
+// App.jsx
+const themes = {
+    'light': { color: '#000', background: '#eee' },
+    'dark': { color: '#fff', background: '#222' }
+}
+
+// 使用React.createContext创建一个context,传入的参数是默认值
+export const ThemesContext = React.createContext(themes.light)
+
+return(
+    // 使用ThemesContext.Provider 将需要共享状态的组件包裹 value也是初始值
+    // Provider代表的是数据提供者 与vue的Provide inject功能相似
+    <ThemesContext.Provider value={themes.light}>
+        <div>
+            <son />
+        </div>
+    </ThemesContext.provider>
+)
+```
+
+```js
+// son.jsx
+import { ThemeContext } from './App' // 导入ThemeContext
+import { useContext } from 'react'
+
+const theme = useContext(ThemeContext) // 将context传递到useContext函数，就可以拿到App传递的themes
+
+```
+
 ##
 
 ##
