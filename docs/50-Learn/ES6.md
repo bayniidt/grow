@@ -1,6 +1,6 @@
 ### ES6
 
-## class类
+## class
 
 ### `constructor` 方法
 
@@ -311,3 +311,22 @@ const user = new User('张三')
 user.getName() // 张三
 user.#name  // 报错
 ```
+
+## promise
+
+## async awiat
+
+## 箭头函数
+
+## 解构赋值
+
+## 展开运算符
+
+## set
+
+## map
+
+## symbol
+
+## proxy
+
