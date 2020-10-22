@@ -508,17 +508,40 @@ invokeif(true, showWelcome, showUnauthorized)
 invokeif(false, showWelcome, showUnauthorized)
 ```
 
-## 函数柯里化 ：待学习
+## 函数柯里化 
 
-> 将函数中某个操作的结果保留，直到其余部分后续也完成后可以一并提供的机制。通过在一个函数中返回另一个函数实现
+概念：只传递给函数一部分参数来调用它，让它返回一个函数去处理剩下的参数，可以一次性调用柯里化函数，也可以每次只传一个参数分多次调用。
+
+> 将函数中某个操作的结果保留，直到其余部分后续也完成后可以一并提供的机制。通过在一个函数中返回另一个函数实现。
 
 ```js
-// 待学习
+
 const userLogs = userName => message => console.log(`${userName} -> ${message}`)
 
 const log = userlog('grandpa23')
 
 log('attempted to load 20 fake members')
+```
+
+```js
+
+var add = fucntion(x) {
+    return function(y) {
+        return x + y
+    }
+}
+
+// 第一次调用 add函数返回的函数指针保存在新的变量中
+var increment = add(1)
+var addTem = add(10)
+
+// 第二次调用
+increment(1) // 2
+addTem(2) // 12
+
+
+
+
 ```
 
 ## 递归

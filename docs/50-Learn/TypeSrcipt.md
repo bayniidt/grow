@@ -109,6 +109,14 @@ function getName(n: NameOrResolver ): string {
     if(typeof n === 'string') return n
     return n()
 }
+
+
+// type与class的方式作用相同，区别在于类中要使用；结束
+type Lady = { name: string, age: number }
+class Lady { name: string; age: number}
+
+
+const women :Lady[] = [{name: '新垣结衣', age: 28}]
 ```
 
 ## declare 环境声明
@@ -447,6 +455,36 @@ snake.name = 'lucy' // 不合法，只读属性不允许修改
 
 
 
+
+## vodi 函数无返回，函数体中有任意的return都会报错
+
+```js
+const sayHi = () => :void {
+    console.log('只执行函数体内容，没有返回值，否则报错')
+}
+```
+
+## never 函数执行错误，无法跳出该函数，永远死循环
+
+```js
+const errFn () => :never {
+    new Error()
+    console.log('永远不会执行到这一句代码')
+}
+````
+
+## 函数参数为一个对象的类型推断
+
+```js
+
+const add = ({one, two}: {one: number, two: number}) => one + two   
+
+const res = add({one: 1, two: 2})  // 正确
+const res = add({one: '1', two: 2}) // 错误
+
+````
+
+##
 
 ##
 
