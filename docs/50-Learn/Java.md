@@ -45,15 +45,15 @@
 
 	变量的定义格式： 数据类型 变量名 = 初始化值;
 	
-		```java
+	```java
 
-		int number = 10
+	int number = 10
 
-		数据类型： 变量变化的范围就是数据类型， 一旦定义后不可改变
-		变量名： 每个变量都有唯一的标识，方便存储
-		初始化值： 使用变量前，需要给变量赋值
+	数据类型： 变量变化的范围就是数据类型， 一旦定义后不可改变
+	变量名： 每个变量都有唯一的标识，方便存储
+	初始化值： 使用变量前，需要给变量赋值
 
-		```
+	```
 
 
 
@@ -156,3 +156,120 @@
 	```
 			
 					
+
+- 关系运算符
+
+	== != > >= < <=
+
+- Scanner 扫描器
+
+	```java
+	// 导包
+	import java.util.Scanner
+
+	public class demo4 {
+		public static void main(String[] args) {
+			Scanner sc = new Scanner(System.in); // 创建一个scanner对象
+			System.out.println("请输入一个整数") // 提示用户输入一个整数
+
+			// 调用scanner键盘记录方法，只允许用户输入整数型数据，并使用变量i接收
+			int i = sc.nextInt(); 
+			System.out.println(i); // 打印 i
+		}
+	}
+	```
+
+	```java
+	// 输入两个值，求和案例
+	import java.util.Scanner;
+
+	public class demo {
+		public static void main(String[] args) {
+			Scanner sc = new Scanner(System.in);
+
+			System.out.println("请输入第一个值");
+			int aa = sc.nextInt();
+
+			System.out.println("请输入第二个值");
+			int bb = sc.nextInt();
+
+			int sum = aa + bb;
+			System.out.println("总和为：" + sum)
+		}
+	}
+	```
+
+## 10-27
+
+- Random 随机数
+
+	```java
+	import java.util.Random;
+
+	public class demo7 {
+		public static void main(String[] args) {
+			Random r = new Random;
+
+			// 传入10 ， 获取到的是0 - 9 之间的随机数；
+			// 前闭后开： 可以取得到0 ，但是取不到10
+			int num = r.nextInt(10);  
+
+			System.out.println(num)
+		}
+	}
+	```
+
+	```java
+	// 猜数字案例
+	import java.util.Random;
+	import java.util.Scanner;
+
+	public class demo8 {
+
+		public static void main(String[] args) {
+			Random r = new Random();
+			int num = r.nextInt(100) + 1;
+
+			Scanner sc = new Scanner(System.in);
+
+			while(true) {
+				System.out.println("请输入一个数字（1-100）")
+				int guessNum = sc.nextInt();
+
+				if(guessNum > num) { "猜大了"}
+				else if(guessNum < num) { "猜小了"}
+				else { "猜中了"; break;}
+			}
+		}
+	}
+	```
+
+- 方法
+
+	<img :src="$withBase('/image/fn-java.png')">
+
+	```java
+	修饰符： public static
+	返回值类型： void 空
+	方法名： main
+	参数类型： String[]
+	参数： args
+	方法体： { ... }
+	```
+
+	```java
+	// 求和方法案例
+	public class demo11 {
+
+		public static void main(String[] args) {
+			// 调用sum方法， 传入的参数为： 实参
+			int x = sum(1, 2);
+			System.out.println(x); // 3
+		}
+
+		// 此处的参数为：形参
+		public static int sum(int a, int b) {
+			return a + b;
+		}
+	}
+	```
