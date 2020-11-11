@@ -190,12 +190,27 @@
 
         // log('attempted to load 20 fake members')
 
-        const countdown = (value) => {
-            console.log(value);
-            return value > 0 ? countdown(value-1) : value
+        // const countdown = (value) => {
+        //     console.log(value);
+        //     return value > 0 ? countdown(value-1) : value
+        // }
+
+        // countdown(10)
+
+        var mother = {
+            a: 1,
+            b: 2
         }
 
-        countdown(10)
+        var daughter = Object.create(mother)
+
+        daughter.b += 2
+
+        // console.log(mother.b, 'mother')
+        // console.log(daughter.b, 'daughter')
+
+        var inNull = Object.create(null)
+        console.log(inNull)
 
 
 
