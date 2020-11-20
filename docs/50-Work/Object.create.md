@@ -1,4 +1,4 @@
-## Object.create()
+# Object.create()
 
 在javascript中没有类的概念，继承是使用原型来实现的，Object.create可以创造一个继承自某个对象的实例，这个实例的Object.prototype指向被继承的对象。
 

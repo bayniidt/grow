@@ -5,9 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <style>
+        #img {
+            position: relative;
+            height: calc(100% - 110px) !important;
+            width: calc(100% - 248px) !important;
+        }
+
+        /* .img {
+            width: 1670px;
+            height: 1670px;
+        } */
+    </style>
 </head>
 
 <body>
+
+    <!-- <img src="./docs/.vuepress/dist/test-img/下载.png" alt="" class="img"> -->
+    <canvas id="cs"></canvas>
+
     <script>
         // function combine() {
         //     let arr = [].concat.apply([], arguments)
@@ -140,7 +157,7 @@
         //     context[fn](...arg)
         //     delete context[fn]
         // }
-        
+
         // const module = {
         //     x: 42,
         //     getX() {
@@ -197,99 +214,141 @@
 
         // countdown(10)
 
-        var mother = {
-            a: 1,
-            b: 2
-        }
+        // var mother = {
+        //     a: 1,
+        //     b: 2
+        // }
 
-        var daughter = Object.create(mother)
+        // var daughter = Object.create(mother)
 
-        daughter.b += 2
+        // daughter.b += 2
 
-        // console.log(mother.b, 'mother')
-        // console.log(daughter.b, 'daughter')
+        // // console.log(mother.b, 'mother')
+        // // console.log(daughter.b, 'daughter')
+
+        // var inNull = Object.create(null)
+        // console.log(inNull)
 
-        var inNull = Object.create(null)
-        console.log(inNull)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        // let a = [
+        //     {money: 20.1, value: 1360, text: '11'},
+        //     {money: 10.21, value: 1330, text: '21'},
+        //     {money: 40, value: 1321, text: '14'},
+        // ]
+
+
+        // *
+        //     1.reduce遍历a的每个元素
+        //     2.传入初始对象{money:0}
+        //     3.获取初始对象的key，返回一个由初始对象key组成的伪数组
+        //     4.遍历由key组成的伪数组
+        //     5.将数组a中与初始对象key对应的属性相加覆盖并存储到初始对象p
+        //     6.返回对象p
+
+
+        // let b = a.reduce((p, c) => {
+        //     Object.keys(p).forEach(k => p[k] += c[k])
+        //     return p
+        // }, {money: 0})
+
+        // console.log(b)
+
+
+        // 实现一个方法
+        // function useRetryable(fn, time) {
+        // let isErr = undefined
+
+        // console.log('useRetryable执行了' + time + '次')
+
+        // try {
+        //     fn()
+        //     console.log('fn执行结束')
+        //     return fn
+        // }catch(err) {
+        //     isErr = err
+        // }
+        // const fnQueue = Array(time).fill(fn)
+        // // console.log(fnQueue, 'fnQueue')
+
+        // for(let i = 0; i < fnQueue.length; i++) {
+        //     // console.log(fnQueue[i]())
+        //     // try {
+        //         // if(fnQueue[i]())
+        //          fnQueue[i]()
+        //     // }
+
+        // }
+
+        // if(isErr && time > 0) {
+        //     return useRetryable(fn, time -1)
+        // }else if(isErr && time <= 0){
+        //     throw new Error(isErr)
+        // }
+
+        // new Promise((resolve, reject) => {
+        //     if(fn()) {
+        //         resolve(fn)
+        //     }else {
+        //         reject(err)
+        //     }
+
+
+        // }).then(res => {
+        //     console.log(res)
+        // })
+
+        // promiseFn.then(() => {
+        //     console.log('then')
+        // }).catch(reason => {
+        //     if(reason && time > 0) {
+        //         return useRetryable(fn, time -1)
+        //     }else if(reason && time <= 0){
+        //         throw new Error(reason)
+        //     }
+        // })
+
+        // }
+
+
+        // const testFn = () => setTimeout(()=> {console.log('异步')}, 1000)
+        // const testFn = () => setTimeout(()=> {throw new Error('抛出错误-异步')}, 1000)
+        // const testFn = () =>  { throw new Error('抛出错误')}
+
+        // useRetryable(testFn, 3)
+        // const retryableFn = useRetryable(testFn, 3)
+
+        // console.log(retryableFn, 'retryableFn')
+
+        /**
+            当调用retryableFn时，它的调用方式要与原始函数（Fn）保持一致。同时还具备重试功能
+            1. 如果n次内执行失败，进行重试
+            2. 一旦执行成功，不再执行多余的次数
+            3. 如果n次全部失败，抛出最后一次的异常
+        
+            */
+
+        // retryableFn()
+
+        canvas.getContext('2d') // 获取渲染上下文
+        const cs = document.getElementById('cs')
+        
 
 
 
 
     </script>
+
+<!--     <script>
+        const cs = document.getElementById('img')
+        cs.width = window.innerWidth
+
+        let imgObj = new Image()
+        imgObj.src = './docs/.vuepress/dist/test-img/下载.png'
+
+        imgObj.onload = function () {
+            let ctx = cs.getContext('2d')
+            ctx.drawImage(this, 0, 0)
+        }
+    </script> -->
 
 </body>
 
