@@ -1,4 +1,4 @@
-# 面试题
+### 面试题
 
 ## HTML 
 
@@ -127,3 +127,55 @@ session：
 
 
 
+
+
+
+## JS
+
+#### 变量`var` `let` `const`
+
+- var 
+
+    1. var可以重复声明 `var a = 1 ; var a = 2 `
+    2. 全局作用域，函数作用域
+    3. 变量提升 在var定义之前访问变量为undefined
+
+- let
+
+    1. 同一作用域下不可以重复声明
+    2. 全局作用域，块级作用域
+    3. 没有变量提升，在let未定义之前访问则会报错
+    4. 存在暂时性死区
+
+#### 暂时性死区
+
+```js
+let a = 1
+let test = function () {
+    console.log(a) // 访问外层作用域的a 打印结果为1
+    a++
+}
+
+---------------------------------------------------
+
+let a = 1
+let test = function () {
+    console.log(a) // 报错 Uncaught ReferenceError: Cannot access 'a' before initialization
+    // 因为下方a存在let声明，形成了暂时性死区，在未声明之前访问则会报错，并且不会访问外层的a
+    let a = 2 
+    a++
+}
+```
+
+#### 变量提升
+
+```js
+var a = 1
+
+fucntion f() {
+    console.log(a) // undefined
+    if(false) {
+        var a = 2 // 无论代码执行与否，使用var声明存在变量提升，在定义之前访问则为undefined
+    }
+}
+```
