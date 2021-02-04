@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>高德地图setLabel，继承使用DataV边框组件，无法渲染Datav边框 | Grow</title>
+    <meta name="generator" content="VuePress 1.5.0">
+    <link rel="shortcut icon" type="image/x-icon" href="./favorite.ico">
+    <meta name="description" content="Vuepress blog">
+    <link rel="preload" href="/grow/assets/css/0.styles.f1214467.css" as="style"><link rel="preload" href="/grow/assets/js/app.846fc622.js" as="script"><link rel="preload" href="/grow/assets/js/2.d89227c1.js" as="script"><link rel="preload" href="/grow/assets/js/30.9ee4eba6.js" as="script"><link rel="prefetch" href="/grow/assets/js/10.590e9869.js"><link rel="prefetch" href="/grow/assets/js/11.d2183df1.js"><link rel="prefetch" href="/grow/assets/js/12.e95b4bb2.js"><link rel="prefetch" href="/grow/assets/js/13.ff97cd67.js"><link rel="prefetch" href="/grow/assets/js/14.5fcce61d.js"><link rel="prefetch" href="/grow/assets/js/15.198b908d.js"><link rel="prefetch" href="/grow/assets/js/16.9d3c7aa5.js"><link rel="prefetch" href="/grow/assets/js/17.4bd6f53d.js"><link rel="prefetch" href="/grow/assets/js/18.9f0c6ebb.js"><link rel="prefetch" href="/grow/assets/js/19.7307f6ee.js"><link rel="prefetch" href="/grow/assets/js/20.885fb95c.js"><link rel="prefetch" href="/grow/assets/js/21.585c7b50.js"><link rel="prefetch" href="/grow/assets/js/22.eaf071b8.js"><link rel="prefetch" href="/grow/assets/js/23.6297db01.js"><link rel="prefetch" href="/grow/assets/js/24.e250f924.js"><link rel="prefetch" href="/grow/assets/js/25.b82cf080.js"><link rel="prefetch" href="/grow/assets/js/26.790fa06e.js"><link rel="prefetch" href="/grow/assets/js/27.06f8607a.js"><link rel="prefetch" href="/grow/assets/js/28.02a1f3ab.js"><link rel="prefetch" href="/grow/assets/js/29.dfa78212.js"><link rel="prefetch" href="/grow/assets/js/3.f73914c4.js"><link rel="prefetch" href="/grow/assets/js/31.fefcc1bb.js"><link rel="prefetch" href="/grow/assets/js/32.c3dda9c4.js"><link rel="prefetch" href="/grow/assets/js/33.3852b17d.js"><link rel="prefetch" href="/grow/assets/js/4.e895adac.js"><link rel="prefetch" href="/grow/assets/js/5.10772ead.js"><link rel="prefetch" href="/grow/assets/js/6.774bd529.js"><link rel="prefetch" href="/grow/assets/js/7.7c2caffa.js"><link rel="prefetch" href="/grow/assets/js/8.30895785.js"><link rel="prefetch" href="/grow/assets/js/9.b4300864.js">
+    <link rel="stylesheet" href="/grow/assets/css/0.styles.f1214467.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/grow/" class="home-link router-link-active"><img src="./image/logo.jpg" alt="Grow" class="logo"> <span class="site-name can-hide">Grow</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/grow/Learn.html" class="nav-link">
+  Learn
+</a></div><div class="nav-item"><a href="/grow/Work.html" class="nav-link">
+  Work
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/grow/Learn.html" class="nav-link">
+  Learn
+</a></div><div class="nav-item"><a href="/grow/Work.html" class="nav-link">
+  Work
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Learn</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>Work</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/grow/Work/CSS选择器复习.html" class="sidebar-link">CSS选择器复习</a></li><li><a href="/grow/Work/ClickCopy.html" class="sidebar-link">单击复制</a></li><li><a href="/grow/Work/History.html" class="sidebar-link">解决Mac上无法使用phpstudy启动项目问题</a></li><li><a href="/grow/Work/Interview.html" class="sidebar-link">面试记录</a></li><li><a href="/grow/Work/InterviewQuestions.html" class="sidebar-link">面试题</a></li><li><a href="/grow/Work/Mqtt.html" class="sidebar-link">mqtt前端链接与使用方式</a></li><li><a href="/grow/Work/Object.create.html" class="sidebar-link">Object.create()</a></li><li><a href="/grow/Work/Promise.html" class="sidebar-link">异步请求数据返回时机不一致出现闪屏现象解决</a></li><li><a href="/grow/Work/UEditor.html" class="sidebar-link">UEditor富文本编辑器与嵌入秀米</a></li><li><a href="/grow/Work/UTF-8字节数.html" class="sidebar-link">UNICODE与字符集字节</a></li><li><a href="/grow/Work/XHhoo.html" class="sidebar-link">小虎Hoo</a></li><li><a href="/grow/Work/extend.html" aria-current="page" class="active sidebar-link">高德地图setLabel，继承使用DataV边框组件，无法渲染Datav边框</a></li><li><a href="/grow/Work/lazyComponets.html" class="sidebar-link">vue单页面中需要注册多个组件的优化方法</a></li><li><a href="/grow/Work/websocket.html" class="sidebar-link">工作中的websocket使用</a></li><li><a href="/grow/Work/xss攻击.html" class="sidebar-link">前端安全</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="高德地图setlabel，继承使用datav边框组件，无法渲染datav边框"><a href="#高德地图setlabel，继承使用datav边框组件，无法渲染datav边框" class="header-anchor">#</a> 高德地图setLabel，继承使用DataV边框组件，无法渲染Datav边框</h1> <p>业务描述：使用高德地图点位弹框功能， 在产生告警的设备点位，弹出告警框</p> <ol><li><p>使用extend继承告警内容组件（该组件中使用DataV的边框组件）</p></li> <li><p>使用$mount获取被继承的告警内容组件的$el HTML模板字符串</p></li> <li><p>将HTML模板字符串放入高德API setLabel的content中进行渲染</p> <ul><li>此时出现问题： <strong>extend继承的组件没有挂载到DOM上，导致DataV边框组件的SVG无法获取宽高，渲染不出指定的边框</strong></li></ul></li></ol> <div class="language-js extra-class"><pre class="language-js"><code>
+<span class="token comment">// 1. </span>
+<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getAlarmLabel</span><span class="token punctuation">(</span>alarm<span class="token punctuation">)</span> <span class="token comment">//获取告警弹框样式 传参包括{proper}</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setLabel</span><span class="token punctuation">(</span>alarm<span class="token punctuation">)</span> <span class="token comment">//{marker,content}</span>
+
+
+<span class="token comment">// 2.</span>
+<span class="token function">getAlarmLabel</span><span class="token punctuation">(</span><span class="token parameter">alarmItem</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> alarmBox <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getAlarmDetail</span><span class="token punctuation">(</span>alarmItem<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        content <span class="token operator">=</span> alarmBox<span class="token punctuation">.</span>$el<span class="token punctuation">.</span>innerHTML
+    alarmItem<span class="token punctuation">.</span>content <span class="token operator">=</span> content
+    window<span class="token punctuation">.</span>clearMarker <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>clearMarker
+<span class="token punctuation">}</span>
+
+
+<span class="token comment">// 3.</span>
+<span class="token function">getAlarmDetail</span> <span class="token punctuation">(</span><span class="token parameter">alarm</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> alarmDetail <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">createAlarmDetail</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    alarmDetail<span class="token punctuation">.</span>data <span class="token operator">=</span> alarm<span class="token punctuation">.</span>proper
+    alarmDetail<span class="token punctuation">.</span>marker <span class="token operator">=</span> alarm<span class="token punctuation">.</span>marker
+
+    <span class="token comment">/**
+     *  这一步并没有挂载到DOM上 只是生成了$el的HTML模板字符串，
+     *  所以clinetWidth与clintHeight这两个属性就无法获取宽高
+     *  svg的宽高也就为0
+     *  解决办法： 挂载到某个DOM上 
+     */</span>
+    <span class="token keyword">return</span> alarmDetail<span class="token punctuation">.</span><span class="token function">$mount</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+<span class="token comment">// 4.</span>
+<span class="token function">createAlarmDetail</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> alarmDetail <span class="token operator">=</span> Vue<span class="token punctuation">.</span><span class="token function">extend</span><span class="token punctuation">(</span>Alarm<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">alarmDetail</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+
+</code></pre></div><p>解决方法1：</p> <blockquote><p>使用中间组件进行挂载，先在中间组件挂载DataV边框，再继承中间组件，最后将继承的中间组件放入高德setLabel中执行渲染</p></blockquote> <div class="language-vue extra-class"><pre class="language-vue"><code>// 中间组件alarm
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>
+        // 注意这里的id
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">:id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span>comId<span class="token punctuation">'</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+
+<span class="token keyword">import</span> alarmContent <span class="token keyword">from</span> <span class="token string">&quot;./alarm-content&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">&quot;vue&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+    props<span class="token operator">:</span> <span class="token punctuation">{</span>
+        data<span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+        marker<span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    methods<span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token function">getData</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>marker<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token function">getAlarmDom</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">$nextTick</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+
+                <span class="token comment">// 获取alarmContent组件（该组件才是弹框内容）模板</span>
+                <span class="token keyword">let</span> alarmDOM <span class="token operator">=</span> Vue<span class="token punctuation">.</span><span class="token function">extend</span><span class="token punctuation">(</span>alarmContent<span class="token punctuation">)</span>
+                <span class="token keyword">let</span> dom <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">alarmDOM</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+                <span class="token comment">// 将data向下传递，弹框内容所需渲染数据</span>
+                dom<span class="token punctuation">.</span>data <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>data
+
+                <span class="token comment">// 提前挂载到中间组件的div中</span>
+                dom<span class="token punctuation">.</span><span class="token function">$mount</span><span class="token punctuation">(</span>document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>comId<span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token function">created</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token comment">// 使用vue组件的唯一ID作为div的ID</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>comId <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_uid
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>    
+    <span class="token function">mounted</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getAlarmDom</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/grow/Work/XHhoo.html" class="prev">
+        小虎Hoo
+      </a></span> <span class="next"><a href="/grow/Work/lazyComponets.html">
+        vue单页面中需要注册多个组件的优化方法
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/grow/assets/js/app.846fc622.js" defer></script><script src="/grow/assets/js/2.d89227c1.js" defer></script><script src="/grow/assets/js/30.9ee4eba6.js" defer></script>
+  </body>
+</html>
