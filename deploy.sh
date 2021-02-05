@@ -13,7 +13,7 @@ cd docs/.vuepress/dist
 git init
 
 # 连接远程仓库
-git remote add origin https://github.com/bayniidt/vue_press.git
+git remote add origin https://github.com/bayniidt/grow.git
 
 # 添加
 git add .

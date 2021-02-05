@@ -1,5 +1,5 @@
 module.exports = {
-    base: '/',
+    base: '/grow/',
 	title: 'Grow',
 	description: 'Vuepress blog',
 	themeConfig: {
@@ -10,20 +10,20 @@ module.exports = {
         nav: [
             {
                 text: 'Learn',
-                link: '/blog/Learn'
+                link: '/Learn'
 		    },
             {
                 text: 'Work',
-                link: '/blog/Work'
+                link: '/Work'
             }
         ],
         sidebarDepth: 2,
-        logo: '/image/logo.jpg'
+        logo: './image/logo.jpg'
 	},
 	// 插件
 	plugins: ['vuepress-plugin-smooth-scroll','autobar'], // 让侧边栏显示跳转文章锚点
 	// ico图标
 	head: [
-		['link', { rel: 'shortcut icon', type: "image/x-icon", href: `/favorite.ico` }]
+		['link', { rel: 'shortcut icon', type: "image/x-icon", href: `./favorite.ico` }]
     ],
 }
