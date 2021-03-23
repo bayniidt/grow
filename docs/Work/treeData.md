@@ -115,7 +115,7 @@ function getCameraCount(data, parentNode = {}) {
 
 /*
     handlerCameraNum：处理摄像头计数
-    cameras: 摄像头数组
+    cameras: 摄像头数组 
     return：camearsNum ，将当前children数组中的摄像头总数与在线树统计并返回
 
 */
