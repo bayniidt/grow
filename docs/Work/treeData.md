@@ -74,7 +74,12 @@
 ]
 ```
 
-处理函数
+
+```js
+//函数调用 areaCameras：源数据[{children: [{ children: [{ children: [] }] }] }, {...}]
+getCameraCount(areaCameras)
+handlerAreaName(areaCameras)
+```
 
 ```js
 /*
@@ -153,8 +158,18 @@ function handlerParentCount(sourceData, parentCode, counts) {
         }
     })
 }
+/*
+    handlerAreaName: 处理设备名称[把在线数与总数添加到节点名称上]
+*/
+function handlerAreaName(areaData) {
+    areaData.map(area => {
+        if (area.camearsNum) {
+            let { count, online } = area.camearsNum
+            area.areaName = `${area.areaName}(${online}/${count})`
+        }
 
-
-
+        if (area.children) handlerAreaName(area.children)
+    })
+}
 
 ```
