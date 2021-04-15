@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>树形数据处理 | Grow</title>
+    <meta name="generator" content="VuePress 1.5.0">
+    <link rel="shortcut icon" type="image/x-icon" href="./favorite.ico">
+    <meta name="description" content="Vuepress blog">
+    <link rel="preload" href="/grow/assets/css/0.styles.f1214467.css" as="style"><link rel="preload" href="/grow/assets/js/app.1bda8ca5.js" as="script"><link rel="preload" href="/grow/assets/js/2.d89227c1.js" as="script"><link rel="preload" href="/grow/assets/js/34.4e987f2a.js" as="script"><link rel="prefetch" href="/grow/assets/js/10.590e9869.js"><link rel="prefetch" href="/grow/assets/js/11.d2183df1.js"><link rel="prefetch" href="/grow/assets/js/12.e95b4bb2.js"><link rel="prefetch" href="/grow/assets/js/13.ff97cd67.js"><link rel="prefetch" href="/grow/assets/js/14.5fcce61d.js"><link rel="prefetch" href="/grow/assets/js/15.198b908d.js"><link rel="prefetch" href="/grow/assets/js/16.9d3c7aa5.js"><link rel="prefetch" href="/grow/assets/js/17.4bd6f53d.js"><link rel="prefetch" href="/grow/assets/js/18.9f0c6ebb.js"><link rel="prefetch" href="/grow/assets/js/19.820cfd74.js"><link rel="prefetch" href="/grow/assets/js/20.b7c0fbe5.js"><link rel="prefetch" href="/grow/assets/js/21.fdfccefb.js"><link rel="prefetch" href="/grow/assets/js/22.0aee853b.js"><link rel="prefetch" href="/grow/assets/js/23.6297db01.js"><link rel="prefetch" href="/grow/assets/js/24.e250f924.js"><link rel="prefetch" href="/grow/assets/js/25.7ae832e1.js"><link rel="prefetch" href="/grow/assets/js/26.d10e0da8.js"><link rel="prefetch" href="/grow/assets/js/27.ecaa3c90.js"><link rel="prefetch" href="/grow/assets/js/28.d3987be6.js"><link rel="prefetch" href="/grow/assets/js/29.d24f1865.js"><link rel="prefetch" href="/grow/assets/js/3.4a8b60d7.js"><link rel="prefetch" href="/grow/assets/js/30.004ce9d0.js"><link rel="prefetch" href="/grow/assets/js/31.e9d77f34.js"><link rel="prefetch" href="/grow/assets/js/32.e9449d5b.js"><link rel="prefetch" href="/grow/assets/js/33.8bdd0804.js"><link rel="prefetch" href="/grow/assets/js/35.31f28c8d.js"><link rel="prefetch" href="/grow/assets/js/36.792152b2.js"><link rel="prefetch" href="/grow/assets/js/4.e895adac.js"><link rel="prefetch" href="/grow/assets/js/5.10772ead.js"><link rel="prefetch" href="/grow/assets/js/6.ec12bce6.js"><link rel="prefetch" href="/grow/assets/js/7.e432acab.js"><link rel="prefetch" href="/grow/assets/js/8.30895785.js"><link rel="prefetch" href="/grow/assets/js/9.b4300864.js">
+    <link rel="stylesheet" href="/grow/assets/css/0.styles.f1214467.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/grow/" class="home-link router-link-active"><img src="./image/logo.jpg" alt="Grow" class="logo"> <span class="site-name can-hide">Grow</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/grow/Learn.html" class="nav-link">
+  Learn
+</a></div><div class="nav-item"><a href="/grow/Work.html" class="nav-link">
+  Work
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/grow/Learn.html" class="nav-link">
+  Learn
+</a></div><div class="nav-item"><a href="/grow/Work.html" class="nav-link">
+  Work
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Learn</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>Work</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/grow/Work/CSS选择器复习.html" class="sidebar-link">CSS选择器复习</a></li><li><a href="/grow/Work/ClickCopy.html" class="sidebar-link">单击复制</a></li><li><a href="/grow/Work/History.html" class="sidebar-link">解决Mac上无法使用phpstudy启动项目问题</a></li><li><a href="/grow/Work/Interview.html" class="sidebar-link">面试记录</a></li><li><a href="/grow/Work/InterviewQuestions.html" class="sidebar-link">面试题</a></li><li><a href="/grow/Work/Mqtt.html" class="sidebar-link">mqtt前端链接与使用方式</a></li><li><a href="/grow/Work/Object.create.html" class="sidebar-link">Object.create()</a></li><li><a href="/grow/Work/Promise.html" class="sidebar-link">异步请求数据返回时机不一致出现闪屏现象解决</a></li><li><a href="/grow/Work/UEditor.html" class="sidebar-link">UEditor富文本编辑器与嵌入秀米</a></li><li><a href="/grow/Work/UTF-8字节数.html" class="sidebar-link">UNICODE与字符集字节</a></li><li><a href="/grow/Work/Vue Proxy代理解决跨域.html" class="sidebar-link">Vue Proxy代理解决跨域的使用记录</a></li><li><a href="/grow/Work/XHhoo.html" class="sidebar-link">小虎Hoo</a></li><li><a href="/grow/Work/extend.html" class="sidebar-link">高德地图setLabel，继承使用DataV边框组件，无法渲染Datav边框</a></li><li><a href="/grow/Work/lazyComponets.html" class="sidebar-link">vue单页面中需要注册多个组件的优化方法</a></li><li><a href="/grow/Work/nginx.html" class="sidebar-link">nginx 反向代理基础使用</a></li><li><a href="/grow/Work/treeData.html" aria-current="page" class="active sidebar-link">树形数据处理</a></li><li><a href="/grow/Work/websocket.html" class="sidebar-link">工作中的websocket使用</a></li><li><a href="/grow/Work/xss攻击.html" class="sidebar-link">前端安全</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="树形数据处理"><a href="#树形数据处理" class="header-anchor">#</a> 树形数据处理</h1> <blockquote><p>业务场景：树形数据下，根据所有子节点中的设备树，给每个父节点添加上设备总数与在线数</p></blockquote> <img src="/grow/image/tree.png"> <div class="language-JSON extra-class"><pre class="language-json"><code><span class="token comment">//数据结构</span>
+<span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+        <span class="token property">&quot;id&quot;</span><span class="token operator">:</span><span class="token number">0</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;position&quot;</span><span class="token operator">:</span><span class="token null keyword">null</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;children&quot;</span><span class="token operator">:</span><span class="token punctuation">[</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;id&quot;</span><span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;createdBy&quot;</span><span class="token operator">:</span><span class="token string">&quot;admin&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;createdTime&quot;</span><span class="token operator">:</span><span class="token string">&quot;2021-03-09 13:13:36&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;updatedBy&quot;</span><span class="token operator">:</span><span class="token null keyword">null</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;updatedTime&quot;</span><span class="token operator">:</span><span class="token null keyword">null</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;tenantId&quot;</span><span class="token operator">:</span><span class="token number">1000</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;areaCode&quot;</span><span class="token operator">:</span><span class="token string">&quot;AR000000000000000180&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;areaName&quot;</span><span class="token operator">:</span><span class="token string">&quot;总降（中心站）(6/6)&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;_level&quot;</span><span class="token operator">:</span><span class="token number">2</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;children&quot;</span><span class="token operator">:</span><span class="token punctuation">[</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;_level&quot;</span><span class="token operator">:</span><span class="token number">3</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;children&quot;</span><span class="token operator">:</span><span class="token punctuation">[</span>
+                            <span class="token punctuation">{</span>
+                                <span class="token property">&quot;deviceCode&quot;</span><span class="token operator">:</span><span class="token string">&quot;DV000000000000001271&quot;</span><span class="token punctuation">,</span>
+                                <span class="token property">&quot;deviceCategory&quot;</span><span class="token operator">:</span><span class="token string">&quot;DT00010001&quot;</span><span class="token punctuation">,</span>
+                                <span class="token property">&quot;proper&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+                                    <span class="token property">&quot;position&quot;</span><span class="token operator">:</span><span class="token string">&quot;{&quot;</span>plan<span class="token string">&quot;:{&quot;</span>lng<span class="token string">&quot;:113.002388,&quot;</span>lat<span class="token string">&quot;:22.000647}}&quot;</span><span class="token punctuation">,</span>
+                                    <span class="token property">&quot;icon&quot;</span><span class="token operator">:</span><span class="token string">&quot;&quot;</span>
+                                <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                                <span class="token property">&quot;streamType&quot;</span><span class="token operator">:</span><span class="token number">0</span><span class="token punctuation">,</span>
+                                <span class="token property">&quot;_level&quot;</span><span class="token operator">:</span><span class="token number">4</span>
+                            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+                <span class="token punctuation">]</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;camearsNum&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+                    <span class="token property">&quot;count&quot;</span><span class="token operator">:</span><span class="token number">0</span><span class="token punctuation">,</span>
+                    <span class="token property">&quot;online&quot;</span><span class="token operator">:</span><span class="token number">0</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;_level&quot;</span><span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;camearsNum&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+            <span class="token property">&quot;count&quot;</span><span class="token operator">:</span><span class="token number">10</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;online&quot;</span><span class="token operator">:</span><span class="token number">10</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+        <span class="token property">&quot;position&quot;</span><span class="token operator">:</span><span class="token null keyword">null</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;children&quot;</span><span class="token operator">:</span><span class="token punctuation">[</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;id&quot;</span><span class="token operator">:</span><span class="token number">190</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;_level&quot;</span><span class="token operator">:</span><span class="token number">2</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;id&quot;</span><span class="token operator">:</span><span class="token number">191</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;_level&quot;</span><span class="token operator">:</span><span class="token number">2</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;id&quot;</span><span class="token operator">:</span><span class="token number">192</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;_level&quot;</span><span class="token operator">:</span><span class="token number">2</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;_level&quot;</span><span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;camearsNum&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+            <span class="token property">&quot;count&quot;</span><span class="token operator">:</span><span class="token number">0</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;online&quot;</span><span class="token operator">:</span><span class="token number">0</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">]</span>
+</code></pre></div><div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">//函数调用 areaCameras：源数据[{children: [{ children: [{ children: [] }] }] }, {...}]</span>
+<span class="token function">getCameraCount</span><span class="token punctuation">(</span>areaCameras<span class="token punctuation">)</span>
+<span class="token function">handlerAreaName</span><span class="token punctuation">(</span>areaCameras<span class="token punctuation">)</span>
+</code></pre></div><div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">/*
+    获取摄像头数量
+    data：数据数组，包括起始数组与children数组
+    parentNode：父节点引用
+*/</span>
+<span class="token keyword">function</span> <span class="token function">getCameraCount</span><span class="token punctuation">(</span><span class="token parameter">data<span class="token punctuation">,</span> parentNode <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> camearsNum <span class="token operator">=</span> <span class="token keyword">undefined</span>
+
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> data<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">//如果当前项存在children，说明不是设备节点，递归调用getCameraCount，传递当前children数组与当前项</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>data<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>children<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">//初始化每一项的camearsNum对象</span>
+            data<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>camearsNum <span class="token operator">=</span> <span class="token punctuation">{</span> count<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span> online<span class="token operator">:</span> <span class="token number">0</span> <span class="token punctuation">}</span>
+            camearsNum <span class="token operator">=</span> <span class="token function">getCameraCount</span><span class="token punctuation">(</span>data<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>children<span class="token punctuation">,</span> data<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment">//如果当前项不存在children，说明是设备节点，调用handlerCameraNum处理设备数量</span>
+        <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token comment">//获得摄像头计数，保存到父节点</span>
+            camearsNum <span class="token operator">=</span> parentNode<span class="token punctuation">.</span>camearsNum <span class="token operator">=</span> <span class="token function">handlerCameraNum</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+
+            <span class="token comment">//如果父节点存在父节点 调用handlerParentCount，传递源数据areaCameras</span>
+            <span class="token comment">//parentNode.parentAreaCode 父节点id</span>
+            <span class="token comment">//camearsNum 当前摄像头计数</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>parentNode<span class="token punctuation">.</span>parentAreaCode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token function">handlerParentCount</span><span class="token punctuation">(</span>areaCameras<span class="token punctuation">,</span> parentNode<span class="token punctuation">.</span>parentAreaCode<span class="token punctuation">,</span> camearsNum<span class="token punctuation">)</span>
+            <span class="token punctuation">}</span>
+
+            <span class="token comment">//这里reutrn是因为只需要处理一次摄像头计数即可 ，结束本次循环</span>
+            <span class="token keyword">return</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">return</span> camearsNum
+<span class="token punctuation">}</span>
+
+
+<span class="token comment">/*
+    handlerCameraNum：处理摄像头计数
+    cameras: 摄像头数组 
+    return：camearsNum ，将当前children数组中的摄像头总数与在线树统计并返回
+
+*/</span>
+<span class="token keyword">function</span> <span class="token function">handlerCameraNum</span><span class="token punctuation">(</span><span class="token parameter">cameras</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> camearsNum <span class="token operator">=</span> <span class="token punctuation">{</span> count<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span> online<span class="token operator">:</span> <span class="token number">0</span> <span class="token punctuation">}</span>
+    cameras<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">camera</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>camera<span class="token punctuation">.</span>proper<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            camearsNum<span class="token punctuation">.</span>count <span class="token operator">+=</span> <span class="token number">1</span>
+            camearsNum<span class="token punctuation">.</span>online <span class="token operator">+=</span> <span class="token number">1</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">return</span> camearsNum
+<span class="token punctuation">}</span>
+
+
+<span class="token comment">/*
+    handlerParentCount: 处理父节点计数
+    sourceData：数据源
+    parentCode: 父节点id
+    counts：摄像头计数
+*/</span>
+<span class="token keyword">function</span> <span class="token function">handlerParentCount</span><span class="token punctuation">(</span><span class="token parameter">sourceData<span class="token punctuation">,</span> parentCode<span class="token punctuation">,</span> counts</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    sourceData<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">item</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>item<span class="token punctuation">.</span>areaCode <span class="token operator">===</span> parentCode <span class="token operator">&amp;&amp;</span> item<span class="token punctuation">.</span>camearsNum<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            item<span class="token punctuation">.</span>camearsNum<span class="token punctuation">.</span>count <span class="token operator">+=</span> counts<span class="token punctuation">.</span>count
+            item<span class="token punctuation">.</span>camearsNum<span class="token punctuation">.</span>online <span class="token operator">+=</span> counts<span class="token punctuation">.</span>online
+
+            <span class="token comment">//如果父节点还存在父节点，递归调用 handlerParentCount</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>item<span class="token punctuation">.</span>parentAreaCode<span class="token punctuation">)</span> <span class="token function">handlerParentCount</span><span class="token punctuation">(</span>areaCameras<span class="token punctuation">,</span> item<span class="token punctuation">.</span>parentAreaCode<span class="token punctuation">,</span> counts<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment">//如果存在chindren，并且当前节点无法匹配，递归调用 handlerParentCount</span>
+        <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>item<span class="token punctuation">.</span>children<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">handlerParentCount</span><span class="token punctuation">(</span>item<span class="token punctuation">.</span>children<span class="token punctuation">,</span> parentCode<span class="token punctuation">,</span> counts<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token comment">/*
+    handlerAreaName: 处理设备名称[把在线数与总数添加到节点名称上]
+*/</span>
+<span class="token keyword">function</span> <span class="token function">handlerAreaName</span><span class="token punctuation">(</span><span class="token parameter">areaData</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    areaData<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">area</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>area<span class="token punctuation">.</span>camearsNum<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">let</span> <span class="token punctuation">{</span> count<span class="token punctuation">,</span> online <span class="token punctuation">}</span> <span class="token operator">=</span> area<span class="token punctuation">.</span>camearsNum
+            area<span class="token punctuation">.</span>areaName <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>area<span class="token punctuation">.</span>areaName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">(</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>online<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>count<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">)</span><span class="token template-punctuation string">`</span></span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>area<span class="token punctuation">.</span>children<span class="token punctuation">)</span> <span class="token function">handlerAreaName</span><span class="token punctuation">(</span>area<span class="token punctuation">.</span>children<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/grow/Work/nginx.html" class="prev">
+        nginx 反向代理基础使用
+      </a></span> <span class="next"><a href="/grow/Work/websocket.html">
+        工作中的websocket使用
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/grow/assets/js/app.1bda8ca5.js" defer></script><script src="/grow/assets/js/2.d89227c1.js" defer></script><script src="/grow/assets/js/34.4e987f2a.js" defer></script>
+  </body>
+</html>
