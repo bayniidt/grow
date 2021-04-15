@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>nginx 反向代理基础使用 | Grow</title>
+    <meta name="generator" content="VuePress 1.5.0">
+    <link rel="shortcut icon" type="image/x-icon" href="./favorite.ico">
+    <meta name="description" content="Vuepress blog">
+    <link rel="preload" href="/grow/assets/css/0.styles.f1214467.css" as="style"><link rel="preload" href="/grow/assets/js/app.8b70c079.js" as="script"><link rel="preload" href="/grow/assets/js/2.d89227c1.js" as="script"><link rel="preload" href="/grow/assets/js/33.8bdd0804.js" as="script"><link rel="prefetch" href="/grow/assets/js/10.05b56c95.js"><link rel="prefetch" href="/grow/assets/js/11.cef176ea.js"><link rel="prefetch" href="/grow/assets/js/12.1aac0633.js"><link rel="prefetch" href="/grow/assets/js/13.d7dc7537.js"><link rel="prefetch" href="/grow/assets/js/14.5fcce61d.js"><link rel="prefetch" href="/grow/assets/js/15.198b908d.js"><link rel="prefetch" href="/grow/assets/js/16.9d3c7aa5.js"><link rel="prefetch" href="/grow/assets/js/17.4bd6f53d.js"><link rel="prefetch" href="/grow/assets/js/18.9f0c6ebb.js"><link rel="prefetch" href="/grow/assets/js/19.820cfd74.js"><link rel="prefetch" href="/grow/assets/js/20.b7c0fbe5.js"><link rel="prefetch" href="/grow/assets/js/21.3730ceb4.js"><link rel="prefetch" href="/grow/assets/js/22.eaf071b8.js"><link rel="prefetch" href="/grow/assets/js/23.9ea680e7.js"><link rel="prefetch" href="/grow/assets/js/24.09832a6f.js"><link rel="prefetch" href="/grow/assets/js/25.1aa13ca0.js"><link rel="prefetch" href="/grow/assets/js/26.b77e4dda.js"><link rel="prefetch" href="/grow/assets/js/27.06f8607a.js"><link rel="prefetch" href="/grow/assets/js/28.f7b3e130.js"><link rel="prefetch" href="/grow/assets/js/29.3fbd3ab3.js"><link rel="prefetch" href="/grow/assets/js/3.4a8b60d7.js"><link rel="prefetch" href="/grow/assets/js/30.8b71694f.js"><link rel="prefetch" href="/grow/assets/js/31.8a13a72c.js"><link rel="prefetch" href="/grow/assets/js/32.c7d2aa20.js"><link rel="prefetch" href="/grow/assets/js/34.4e987f2a.js"><link rel="prefetch" href="/grow/assets/js/35.31f28c8d.js"><link rel="prefetch" href="/grow/assets/js/36.792152b2.js"><link rel="prefetch" href="/grow/assets/js/4.e895adac.js"><link rel="prefetch" href="/grow/assets/js/5.10772ead.js"><link rel="prefetch" href="/grow/assets/js/6.29495c97.js"><link rel="prefetch" href="/grow/assets/js/7.e432acab.js"><link rel="prefetch" href="/grow/assets/js/8.b5f303ff.js"><link rel="prefetch" href="/grow/assets/js/9.d562e01d.js">
+    <link rel="stylesheet" href="/grow/assets/css/0.styles.f1214467.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/grow/" class="home-link router-link-active"><img src="./image/logo.jpg" alt="Grow" class="logo"> <span class="site-name can-hide">Grow</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/grow/Learn.html" class="nav-link">
+  Learn
+</a></div><div class="nav-item"><a href="/grow/Work.html" class="nav-link">
+  Work
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/grow/Learn.html" class="nav-link">
+  Learn
+</a></div><div class="nav-item"><a href="/grow/Work.html" class="nav-link">
+  Work
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Learn</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>Work</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/grow/Work/CSS选择器复习.html" class="sidebar-link">CSS选择器复习</a></li><li><a href="/grow/Work/ClickCopy.html" class="sidebar-link">单击复制</a></li><li><a href="/grow/Work/History.html" class="sidebar-link">解决Mac上无法使用phpstudy启动项目问题</a></li><li><a href="/grow/Work/Interview.html" class="sidebar-link">面试记录</a></li><li><a href="/grow/Work/InterviewQuestions.html" class="sidebar-link">面试题</a></li><li><a href="/grow/Work/Mqtt.html" class="sidebar-link">mqtt前端链接与使用方式</a></li><li><a href="/grow/Work/Object.create.html" class="sidebar-link">Object.create()</a></li><li><a href="/grow/Work/Promise.html" class="sidebar-link">异步请求数据返回时机不一致出现闪屏现象解决</a></li><li><a href="/grow/Work/UEditor.html" class="sidebar-link">UEditor富文本编辑器与嵌入秀米</a></li><li><a href="/grow/Work/UTF-8字节数.html" class="sidebar-link">UNICODE与字符集字节</a></li><li><a href="/grow/Work/Vue Proxy代理解决跨域.html" class="sidebar-link">Vue Proxy代理解决跨域的使用记录</a></li><li><a href="/grow/Work/XHhoo.html" class="sidebar-link">小虎Hoo</a></li><li><a href="/grow/Work/extend.html" class="sidebar-link">高德地图setLabel，继承使用DataV边框组件，无法渲染Datav边框</a></li><li><a href="/grow/Work/lazyComponets.html" class="sidebar-link">vue单页面中需要注册多个组件的优化方法</a></li><li><a href="/grow/Work/nginx.html" aria-current="page" class="active sidebar-link">nginx 反向代理基础使用</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/grow/Work/nginx.html#项目使用场景" class="sidebar-link">项目使用场景</a></li></ul></li><li><a href="/grow/Work/treeData.html" class="sidebar-link">树形数据处理</a></li><li><a href="/grow/Work/websocket.html" class="sidebar-link">工作中的websocket使用</a></li><li><a href="/grow/Work/xss攻击.html" class="sidebar-link">前端安全</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="nginx-反向代理基础使用"><a href="#nginx-反向代理基础使用" class="header-anchor">#</a> nginx 反向代理基础使用</h1> <img src="/grow/image/nginx.png"> <h2 id="项目使用场景"><a href="#项目使用场景" class="header-anchor">#</a> 项目使用场景</h2> <ol><li><p>在需要进行外部请求时，发生跨域错误，此时用到nginx反向代理，在http/server/location中添加指定url匹配，
+并把匹配到的请求转发到实际需要请求的外部地址，解决跨域问题。</p></li> <li><p>在服务器挂掉时可以用作本地服务器，将build好的前端代码路径添加到http/server/location/root项中，
+添加监听的端口与本地ip，就可以作为本地服务器进行访问。</p></li></ol> <p>Nginx在做反向代理时，提供性能稳定，并且能够提供配置灵活的转发功能。Nginx可以根据不同的正则匹配，
+采取不同的转发策略，比如图片文件结尾的走文件服务器，动态页面走web服务器，只要你正则写的没问题，
+又有相对应的服务器解决方案，你就可以随心所欲的玩。并且Nginx对返回结果进行错误页跳转，异常判断等。
+如果被分发的服务器存在异常，他可以将请求重新转发给另外一台服务器，然后自动去除异常服务器。</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">//基础命令</span>
+<span class="token comment">//启动：</span>
+    start nginx
+
+<span class="token comment">//重启</span>
+    nginx <span class="token operator">-</span>s reload
+
+<span class="token comment">//关闭</span>
+    nginx <span class="token operator">-</span>s stop
+    
+</code></pre></div><blockquote><p>nginx.conf文件配置</p></blockquote> <div class="language-conf extra-class"><pre class="language-text"><code>#nginx.conf
+#句尾分号不可缺少
+#http块：可以嵌套多个server，配置代理，缓存
+http {
+    include         mime.types; #文件拓展名与文件类型映射表
+    default_type    application/octet-stream; #默认文件类型，默认为text/plain
+
+    #access_log  logs/access.log  main; #取消日志服务
+
+    sendfile        on; #允许sendfile方式传输文件，默认为off
+    #tcp_nopush     on;
+
+    keepalive_timeout  65; #连接超时时间，默认为75s
+
+    gzip  on; #开启gzip
+    gzip_vary on;
+    gzip_min_length 1k; #不压缩临界值,大于1k的才压缩,一般不用改
+    gzip_buffers 4 16k;
+    gzip_comp_level 8; #压缩级别,数字越大压缩的越好
+    gzip_types  text/plain application/javascript 
+                application/x-javascript text/css application/xml 
+                text/javascript application/x-httpd-php image/jpeg 
+                image/gif image/png image/x-icon; #压缩文件类型,缺啥补啥
+
+	client_max_body_size 5m;
+
+    #server块，配置虚拟主机相关参数，一个http中可以有多个server
+    server {
+        listen       80; #监听端口
+        server_name  localhost; #监听地址
+        
+        #配置请求的路由， 一个server中可以有多个location
+        location / { #请求的url匹配，使用正则
+            root   D:/isafety-portal/docker/42/dist; #文件根目录
+            index  index.html index.htm; #默认页
+        }
+
+        location ~* \.(eot|otf|ttf|woff|svg)$ { 
+            root /opt/znv/isafety-portal;
+            add_header Access-Control-Allow-Origin *; #添加请求头
+        }
+
+        location ^~/api/ { #匹配/api/开头的请求
+            proxy_pass  http://10.72.74.73:20800/; #转发到指定地址
+            proxy_http_version 1.1;
+			proxy_set_header Upgrade $http_upgrade;
+			proxy_set_header Connection 'upgrade';
+            proxy_set_header Host $http_host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forward-For $proxy_add_x_forwarded_for;
+			add_header Access-Control-Allow-Credentials true;
+			add_header Access-Control-Allow-Origin *;			
+			add_header Access-Control-Allow-Methods 'POST,GET,OPTIONS,PUT,DELETE';
+        }
+
+    }
+}
+
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/grow/Work/lazyComponets.html" class="prev">
+        vue单页面中需要注册多个组件的优化方法
+      </a></span> <span class="next"><a href="/grow/Work/treeData.html">
+        树形数据处理
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/grow/assets/js/app.8b70c079.js" defer></script><script src="/grow/assets/js/2.d89227c1.js" defer></script><script src="/grow/assets/js/33.8bdd0804.js" defer></script>
+  </body>
+</html>
