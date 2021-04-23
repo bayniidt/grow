@@ -1,5 +1,107 @@
 ### 面试题
 
+## 2021-4月面试题整理记录
+
+1. vue-router如何创建动态路由与获取动态路由传递的参数
+
+   - 动态路径参数：以：开头 例：/:id
+   - 动态参数获取：this.$route.params.id
+
+2. vue-router如何实现懒加载
+
+   - component: () => import('url')
+
+3. 如何处理跨域
+
+   1. 后端设置cors
+   2. 配置vue proxyTable
+   3. JSONP【只支持get】
+   4. nginx反向代理
+
+4. 闭包的优缺点与应用场景
+
+   - 优点：变量私有化，防止变量污染
+   - 缺点：变量不会被回收，会一直占据内存空间，容易造成内存泄漏
+
+   - 使用场景：计数器，回调函数，防抖节流
+   - 业务场景：sokect 回调函数 array数组回调函数[map，find，filter...]
+
+5. computed与watch的应用场景
+
+   - computed：依赖的属性发生变化才会变化，购物车功能
+   - watch：数据发生变化时需要进行对应处理，表单校验或进行异步API请求
+
+6. v-for为什么需要key属性
+
+   - key一般为唯一值，在vue进行虚拟dom【ast树】diff补丁对比时可以减少性能消耗，存在唯一的key可以更快的定位到指定的dom节点，如果使用index作为key，有可能会出现重复渲染的BUG
+
+7. 定时器与事件监听应在哪个生命周期进行销毁
+
+   - beforeDestroy：组件销毁之前
+
+8. promise.then的返回值
+
+   - .then会返回一个新的promise对象
+
+9. vuex中的辅助函数有哪些
+
+   - mapState, mapMutations, mapActions
+
+10. 如何提交一个actions
+
+    - dispatch
+
+11. vuex模块化需要开启什么
+
+    - namespaced： 命名空间
+
+12. 原生ajax的使用步骤
+
+    1. new XHR对象
+    2. xhr.open('url') 设置请求路径
+    3. xhr.header 设置请求头
+    4. xhr.send 发送请求
+
+13. git如何取消commit
+
+    - git reset HEAD~[n 回退的commit提交次数 1 2 3 4]
+    - git reset --hard [hash commit的hash值]
+
+14. 如何复制一个对象
+
+    1. json.parse(json.stringify)
+    2. 递归深拷贝
+    3. Object.assing 浅拷贝
+
+15. flex布局常用属性
+
+    1. flex-direction ：定义主轴方向
+    2. justify-content：定义主轴对齐方式
+    3. flex-wrap：换行，默认为nowrap
+    4. align-items：定义交叉轴对齐方式
+    5. flex-shrink：定义缩小比例，默认为1
+
+16. watch的API有哪些
+
+    1. deep：深层监听
+    2. immdiate：初始化时执行回调函数
+
+17. js的事件循环
+
+    1. js为单线程
+    2. js任务分为同步任务与异步任务，同步任务优先执行，遇到异步任务会放入异步任务队列，等待同步任务执行完毕后再执行异步任务
+    3. 异步任务分为微任务与宏任务
+    4. 微任务优于宏任务执行
+    5. 微任务：promise MutaionObsever 宏任务：定时器，用户交互
+
+18. promise的常用api有哪些
+
+    1. promise.then
+    2. promise.reject
+    3. promise.resolve
+    4. promise.all
+    5. promise.catch
+    6. promise.finally
 ## HTML 
 
 1. HTML语义化的理解
