@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>在递归中进行Ajax请求，并进行对应处理 | Grow</title>
+    <meta name="generator" content="VuePress 1.5.0">
+    <link rel="shortcut icon" type="image/x-icon" href="./favorite.ico">
+    <meta name="description" content="Vuepress blog">
+    <link rel="preload" href="/grow-pro/assets/css/0.styles.4127d8e9.css" as="style"><link rel="preload" href="/grow-pro/assets/js/app.6dafa904.js" as="script"><link rel="preload" href="/grow-pro/assets/js/2.d587827d.js" as="script"><link rel="preload" href="/grow-pro/assets/js/38.3a2465d4.js" as="script"><link rel="prefetch" href="/grow-pro/assets/js/10.590e9869.js"><link rel="prefetch" href="/grow-pro/assets/js/11.93a8d318.js"><link rel="prefetch" href="/grow-pro/assets/js/12.fd545265.js"><link rel="prefetch" href="/grow-pro/assets/js/13.45af47d3.js"><link rel="prefetch" href="/grow-pro/assets/js/14.b89024ad.js"><link rel="prefetch" href="/grow-pro/assets/js/15.198b908d.js"><link rel="prefetch" href="/grow-pro/assets/js/16.9d3c7aa5.js"><link rel="prefetch" href="/grow-pro/assets/js/17.4bd6f53d.js"><link rel="prefetch" href="/grow-pro/assets/js/18.9f0c6ebb.js"><link rel="prefetch" href="/grow-pro/assets/js/19.820cfd74.js"><link rel="prefetch" href="/grow-pro/assets/js/20.b7c0fbe5.js"><link rel="prefetch" href="/grow-pro/assets/js/21.fdfccefb.js"><link rel="prefetch" href="/grow-pro/assets/js/22.b54fa98e.js"><link rel="prefetch" href="/grow-pro/assets/js/23.62915005.js"><link rel="prefetch" href="/grow-pro/assets/js/24.3c4cb802.js"><link rel="prefetch" href="/grow-pro/assets/js/25.b82cf080.js"><link rel="prefetch" href="/grow-pro/assets/js/26.b77e4dda.js"><link rel="prefetch" href="/grow-pro/assets/js/27.b59712f4.js"><link rel="prefetch" href="/grow-pro/assets/js/28.d3987be6.js"><link rel="prefetch" href="/grow-pro/assets/js/29.d24f1865.js"><link rel="prefetch" href="/grow-pro/assets/js/3.66dc9fdd.js"><link rel="prefetch" href="/grow-pro/assets/js/30.004ce9d0.js"><link rel="prefetch" href="/grow-pro/assets/js/31.8a13a72c.js"><link rel="prefetch" href="/grow-pro/assets/js/32.c7d2aa20.js"><link rel="prefetch" href="/grow-pro/assets/js/33.8bdd0804.js"><link rel="prefetch" href="/grow-pro/assets/js/34.4e987f2a.js"><link rel="prefetch" href="/grow-pro/assets/js/35.31f28c8d.js"><link rel="prefetch" href="/grow-pro/assets/js/36.792152b2.js"><link rel="prefetch" href="/grow-pro/assets/js/37.7d9a0c18.js"><link rel="prefetch" href="/grow-pro/assets/js/4.2a59d3b3.js"><link rel="prefetch" href="/grow-pro/assets/js/5.e697e35b.js"><link rel="prefetch" href="/grow-pro/assets/js/6.d05a111b.js"><link rel="prefetch" href="/grow-pro/assets/js/7.8cf097b7.js"><link rel="prefetch" href="/grow-pro/assets/js/8.c3b1d27f.js"><link rel="prefetch" href="/grow-pro/assets/js/9.26b5da93.js">
+    <link rel="stylesheet" href="/grow-pro/assets/css/0.styles.4127d8e9.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/grow-pro/" class="home-link router-link-active"><img src="./image/logo.jpg" alt="Grow" class="logo"> <span class="site-name can-hide">Grow</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/grow-pro/Learn.html" class="nav-link">
+  Learn
+</a></div><div class="nav-item"><a href="/grow-pro/Work.html" class="nav-link">
+  Work
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/grow-pro/Learn.html" class="nav-link">
+  Learn
+</a></div><div class="nav-item"><a href="/grow-pro/Work.html" class="nav-link">
+  Work
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Learn</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>Work</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/grow-pro/Work/CSS选择器复习.html" class="sidebar-link">CSS选择器复习</a></li><li><a href="/grow-pro/Work/ClickCopy.html" class="sidebar-link">单击复制</a></li><li><a href="/grow-pro/Work/History.html" class="sidebar-link">解决Mac上无法使用phpstudy启动项目问题</a></li><li><a href="/grow-pro/Work/Interview.html" class="sidebar-link">面试记录</a></li><li><a href="/grow-pro/Work/InterviewQuestions.html" class="sidebar-link">面试题</a></li><li><a href="/grow-pro/Work/Mqtt.html" class="sidebar-link">mqtt前端链接与使用方式</a></li><li><a href="/grow-pro/Work/Object.create.html" class="sidebar-link">Object.create()</a></li><li><a href="/grow-pro/Work/Promise.html" class="sidebar-link">异步请求数据返回时机不一致出现闪屏现象解决</a></li><li><a href="/grow-pro/Work/UEditor.html" class="sidebar-link">UEditor富文本编辑器与嵌入秀米</a></li><li><a href="/grow-pro/Work/UTF-8字节数.html" class="sidebar-link">UNICODE与字符集字节</a></li><li><a href="/grow-pro/Work/Vue Proxy代理解决跨域.html" class="sidebar-link">Vue Proxy代理解决跨域的使用记录</a></li><li><a href="/grow-pro/Work/XHhoo.html" class="sidebar-link">小虎Hoo</a></li><li><a href="/grow-pro/Work/extend.html" class="sidebar-link">高德地图setLabel，继承使用DataV边框组件，无法渲染Datav边框</a></li><li><a href="/grow-pro/Work/lazyComponets.html" class="sidebar-link">vue单页面中需要注册多个组件的优化方法</a></li><li><a href="/grow-pro/Work/nginx.html" class="sidebar-link">nginx 反向代理基础使用</a></li><li><a href="/grow-pro/Work/treeData.html" class="sidebar-link">树形数据处理</a></li><li><a href="/grow-pro/Work/websocket.html" class="sidebar-link">工作中的websocket使用</a></li><li><a href="/grow-pro/Work/xss攻击.html" class="sidebar-link">前端安全</a></li><li><a href="/grow-pro/Work/发布订阅.html" class="sidebar-link">发布订阅</a></li><li><a href="/grow-pro/Work/递归调用Ajax请求.html" class="active sidebar-link">在递归中进行Ajax请求，并进行对应处理</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="在递归中进行ajax请求，并进行对应处理"><a href="#在递归中进行ajax请求，并进行对应处理" class="header-anchor">#</a> 在递归中进行Ajax请求，并进行对应处理</h1> <blockquote><p>业务场景：门禁人员授权，批量选择人员[100]个，此时如果发送100个人员id数组接口会超时。把id数组用splice进行切割，
+每次请求1个或N个，并进行loading蒙版提示（0/100）授权成功状态</p></blockquote> <div class="language-js extra-class"><pre class="language-js"><code>
+<span class="token comment">//1.进行人员过滤， 过滤掉为绑定员工卡的人员，否则发送请求时后台会报错</span>
+    computed<span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token function">list</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">let</span> ret <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>dataList<span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token comment">//过滤未绑卡的人员 否则后台会报错</span>
+                ret <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>dataList<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token parameter">item</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+                    <span class="token comment">//这里处理的是已经授权过的人员不可选中</span>
+                    <span class="token keyword">if</span> <span class="token punctuation">(</span>item<span class="token punctuation">.</span>cardNumber <span class="token operator">&amp;&amp;</span> item<span class="token punctuation">.</span>entranceGuardAuth<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                        item<span class="token punctuation">.</span>btnShowCon <span class="token operator">=</span> <span class="token punctuation">{</span>
+                            addAuth<span class="token operator">:</span> <span class="token operator">!</span>item<span class="token punctuation">.</span>entranceGuardAuth<span class="token punctuation">,</span>
+                        <span class="token punctuation">}</span>
+                    <span class="token punctuation">}</span>
+                    <span class="token keyword">return</span> item<span class="token punctuation">.</span>cardNumber
+                <span class="token punctuation">}</span><span class="token punctuation">)</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>total <span class="token operator">=</span> ret<span class="token punctuation">.</span>length
+            <span class="token keyword">return</span> ret 
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+<span class="token comment">//2.点击提交按钮时调用sendAdd函数，并传递id数组与接口参数</span>
+
+<span class="token keyword">async</span> <span class="token function">sendAdd</span><span class="token punctuation">(</span><span class="token parameter">arr<span class="token punctuation">,</span> params</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">//深拷贝id数组与参数对象，否则引用关系会互相影响</span>
+    <span class="token keyword">let</span> ids <span class="token operator">=</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span><span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">let</span> par <span class="token operator">=</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span><span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>params<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    <span class="token comment">//切割id数组，保存到参数对象中</span>
+    par<span class="token punctuation">.</span>personnelIds <span class="token operator">=</span> ids<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+
+    <span class="token comment">//发送API请求</span>
+    <span class="token comment">//finally：无论promise状态成功或失败都会执行【接口超时或其他报错，不影响后续人员授权操作】</span>
+    <span class="token keyword">await</span> <span class="token function">entranceAuthAdd</span><span class="token punctuation">(</span>par<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">finally</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>timer<span class="token punctuation">)</span> <span class="token function">clearTimeout</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>timer<span class="token punctuation">)</span>
+
+        <span class="token comment">//如果id数组中还有人员 递归调用sendAdd函数</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>ids<span class="token punctuation">.</span>length <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>sendDone<span class="token operator">++</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>timer <span class="token operator">=</span> <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+                <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">sendAdd</span><span class="token punctuation">(</span>ids<span class="token punctuation">,</span> par<span class="token punctuation">)</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">500</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>ids<span class="token punctuation">.</span>length <span class="token operator">===</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'请求发送完了，关闭弹窗刷新页面'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>$message<span class="token punctuation">.</span><span class="token function">success</span><span class="token punctuation">(</span><span class="token string">'操作成功'</span><span class="token punctuation">)</span>
+
+            <span class="token keyword">this</span><span class="token punctuation">.</span>loading <span class="token operator">=</span> <span class="token boolean">false</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">$emit</span><span class="token punctuation">(</span><span class="token string">'refresh'</span><span class="token punctuation">)</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>visible <span class="token operator">=</span> <span class="token boolean">false</span>
+            <span class="token comment">//重置发送完成计数</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>sendDone <span class="token operator">=</span> <span class="token number">0</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/grow-pro/Work/发布订阅.html" class="prev">
+        发布订阅
+      </a></span> <!----></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/grow-pro/assets/js/app.6dafa904.js" defer></script><script src="/grow-pro/assets/js/2.d587827d.js" defer></script><script src="/grow-pro/assets/js/38.3a2465d4.js" defer></script>
+  </body>
+</html>

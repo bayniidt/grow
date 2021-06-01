@@ -1,5 +1,5 @@
 module.exports = {
-    base: '/grow/',
+    base: '/grow-pro/',
 	title: 'Grow',
 	description: 'Vuepress blog',
 	themeConfig: {
