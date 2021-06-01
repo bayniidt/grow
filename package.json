@@ -19,5 +19,9 @@
     "vuepress-plugin-smooth-scroll": "0.0.9",
     "watchpack": "^1.6.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "autoprefixer": "^10.2.6",
+    "browserslist": "^4.16.6",
+    "caniuse-lite": "^1.0.30001232"
+  }
 }

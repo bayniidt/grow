@@ -7,27 +7,25 @@ set -e
 npm run build
 
 # 进入生成的文件夹
-cd docs/.vuepress/dist
+# cd docs/.vuepress/dist
 
 # 初始化Git
-git init
+# git init
 
-# 连接远程仓库
-git remote add origin https://github.com/bayniidt/grow.git
+# # 连接远程仓库
+# git remote add origin https://github.com/bayniidt/grow-pro.git
 
-# 添加
-git add .
+# # 添加
+# git add .
 
-# 暂存
-git commit -m 'deploy'
-
-
-# 解决dist文件夹打包后git失缺重新push报错
-# git pull origin master --allow-unrelated-histories
+# # 暂存
+# git commit -m 'deploy'
 
 
+# # 解决dist文件夹打包后git失缺重新push报错
+# # git pull origin master --allow-unrelated-histories
 
-# 推送
-git push -u origin master
+# # 推送
+# git push origin master --force
 
-cd -
+# cd -
