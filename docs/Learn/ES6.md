@@ -314,6 +314,53 @@ user.#name  // 报错
 
 ## promise
 
+> promise是什么？
+  
+  promise是一种编程模式，解决了js单线程无法进行多任务处理的难题与回调地狱
+
+- promise的三种状态
+
+    1. pending[待定]：初始状态，既没有被兑现，也没有被拒绝
+    2. fulfilled[已兑现]：异步操作(API请求或其他)操作成功完成
+    3. rejected[已拒绝]: 异步操作(API请求或其他)操作失败
+
+    > 需要注意的是pending初始状态一旦往下执行后，只有成功or失败，并且执行后的状态不会再进行改变
+    并且`.then`或者`.catch`都会返回一个新的promise，所以可以进行链式调用
+
+    ```js
+    /**
+     * .then的两个参数必须是function，否则会被忽略，并且只调用一次，.then返回一个新的promsie
+     * resolve：成功回调函数 
+     * reject：失败回调函数
+    **//
+    Promise.prototype.then((resolve, reject) => { ...})
+
+    //此处只传递了第一个参数resolve 成功回调
+    ajax(...).then(res => {
+        data = res
+    })
+
+    //.catch接收的是.reject失败处理函数
+    ajax(...).catch(e => {
+        console.log(e, "promise失败")
+    })
+
+    //链式调用
+    ajax('请求最新的图片url').then('处理图片url拼接处理').then('讲处理好的图片再次上传服务器')
+    ```
+
+> promise的常用API
+
+  1. Promise.all ：**该方法返回一个新的promise，需要所有的异步请求(Promise)执行成功后才会触发成功，一旦任意一个失败都会触发失败**
+  2. Promise.any ：**接收一个promise集合，当其中任意一个成功后触发，就返回成功的那个值**
+  3. Promise.reject ：**返回一个状态为失败的Promise对象**
+  4. Promise.resolve ：**返回一个状态为成功的Promise对象**
+  5. Promise.catch ：**接收Promise的错误结果，并进行处理**
+  6. Promise.then ：**获取Promise的结果，并进行对应的处理**
+
+
+
+
 ## async awiat
 
 ## 箭头函数
